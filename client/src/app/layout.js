@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://mentovara.vercel.app"),
+  metadataBase: new URL("https://mentovara.vercel.app/"),
   title: "Mentovara — Learn, Grow, Succeed",
   description:
     "Mentovara is a modern EdTech platform where instructors create courses and students learn through structured video content with progress tracking.",
@@ -23,8 +23,8 @@ export const metadata = {
   },
   openGraph: {
     title: "Mentovara — Learn, Grow, Succeed",
-    description: "Mentovara is a modern EdTech platform.",
-    url: "https://mentovara.vercel.app",
+    description: "Mentovara is a modern EdTech platform where instructors create courses and students learn through structured video content with progress tracking.",
+    url: "https://mentovara.vercel.app/",
     siteName: "Mentovara",
     images: [
       {
@@ -34,7 +34,7 @@ export const metadata = {
         alt: "Mentovara Logo",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
 };
