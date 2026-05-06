@@ -130,4 +130,4 @@ docker-compose up -d --build
 - MongoDB will be secured with authentication and mapped to port `27017` internally.
 
 ---
-**License**: MIT | **Author**: Rustom | **Audit Grade**: 100% Purity
+**License**: MIT | **Author**: Rustom Yadav| **Audit Grade**: 100% Purity

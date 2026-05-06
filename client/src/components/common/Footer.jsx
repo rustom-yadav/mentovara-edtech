@@ -75,7 +75,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Mentovara. Built by Rustom.
+            &copy; {new Date().getFullYear()} Mentovara. Built by Rustom Yadav.
           </p>
         </div>
       </div>

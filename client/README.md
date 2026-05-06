@@ -90,4 +90,4 @@ client/
 4. **Audit**: `npm run lint`
 
 ---
-**License**: MIT | **Author**: Rustom
+**License**: MIT | **Author**: Rustom Yadav
