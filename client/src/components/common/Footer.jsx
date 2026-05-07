@@ -54,7 +54,7 @@ export default function Footer() {
               <GithubIcon className="size-5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/vijay-yadav-b31a7a300/"
+              href="https://www.linkedin.com/in/rustom-yadav/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
