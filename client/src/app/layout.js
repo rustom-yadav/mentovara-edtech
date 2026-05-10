@@ -15,6 +15,15 @@ const inter = Inter({
 export const metadata = {
   metadataBase: new URL("https://mentovara.vercel.app/"),
   title: "Mentovara — Learn, Grow, Succeed",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" }, // Standard favicon
+      { url: "/favicon.ico?v=2", sizes: "any" }, // Force refresh 
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png" }, // Apple devices 
+    ],
+  },
   description:
     "Mentovara is a modern EdTech platform where instructors create courses and students learn through structured video content with progress tracking.",
   keywords: ["edtech", "courses", "learning", "mentovara", "online education"],
@@ -23,7 +32,8 @@ export const metadata = {
   },
   openGraph: {
     title: "Mentovara — Learn, Grow, Succeed",
-    description: "Mentovara is a modern EdTech platform where instructors create courses and students learn through structured video content with progress tracking.",
+    description:
+      "Mentovara is a modern EdTech platform where instructors create courses and students learn through structured video content with progress tracking.",
     url: "https://mentovara.vercel.app/",
     siteName: "Mentovara",
     images: [
