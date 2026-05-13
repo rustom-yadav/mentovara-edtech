@@ -45,7 +45,7 @@ export default function Footer() {
           {/* Social Icons */}
           <div className="flex items-center gap-8">
             <a
-              href="https://github.com/Rustom-yadav"
+              href="https://github.com/rustom-yadav"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"

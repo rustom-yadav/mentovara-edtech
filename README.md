@@ -4,7 +4,7 @@ A modern EdTech platform where instructors create structured video courses and s
 
 **Built by Rustom Yadav** · [MIT License](./LICENSE)
 
-🔗 **Repo:** [GitHub Repository](https://github.com/Rustom-yadav/mentovara-edtech) 
+🔗 **Repo:** [GitHub Repository](https://github.com/rustom-yadav/mentovara-edtech) 
 🌐 **Frontend:** [mentovara.vercel.app](https://mentovara.vercel.app)  
 🌐 **Backend API:** [mentovara-edtech-api.onrender.com](https://mentovara-edtech-api.onrender.com)
 
