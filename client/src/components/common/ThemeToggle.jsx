@@ -18,7 +18,7 @@ export default function ThemeToggle() {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
+    // Theme is intentionally NOT saved to localStorage — light is always the default on revisit
   }
 
   // Avoid hydration mismatch
