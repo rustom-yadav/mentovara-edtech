@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useVerifyEmail } from "@/hooks/useVerifyEmail";
+import { Suspense } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useVerifyEmail } from '@/hooks/useVerifyEmail';
 
 function VerifyEmailForm() {
   const {
@@ -45,9 +45,7 @@ function VerifyEmailForm() {
             />
             <span className="text-xl font-bold gradient-text">Mentovara</span>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight">
-            Verify your email
-          </h1>
+          <h1 className="text-2xl font-bold tracking-tight">Verify your email</h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
             We sent a 6-digit code to your email address.
           </p>
@@ -66,7 +64,7 @@ function VerifyEmailForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 readOnly={!!initialEmail}
-                className={initialEmail ? "bg-muted text-muted-foreground" : ""}
+                className={initialEmail ? 'bg-muted text-muted-foreground' : ''}
                 required
               />
             </div>
@@ -92,39 +90,27 @@ function VerifyEmailForm() {
               </p>
             )}
 
-            <Button
-              type="submit"
-              className="w-full"
-              size="lg"
-              disabled={loading}
-            >
+            <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (
                 <>
-                  <Loader2
-                    className="size-4 animate-spin"
-                    data-icon="inline-start"
-                  />
+                  <Loader2 className="size-4 animate-spin" data-icon="inline-start" />
                   Verifying...
                 </>
               ) : (
-                "Verify and Continue"
+                'Verify and Continue'
               )}
             </Button>
           </form>
 
           <div className="mt-6 flex flex-col items-center justify-center space-y-2">
-            <p className="text-sm text-muted-foreground">
-              Didn&apos;t receive the code?
-            </p>
+            <p className="text-sm text-muted-foreground">Didn&apos;t receive the code?</p>
             <Button
               variant="outline"
               size="sm"
               onClick={onResend}
               disabled={resendCooldown > 0 || loading}
             >
-              {resendCooldown > 0
-                ? `Resend available in ${resendCooldown}s`
-                : "Resend Code"}
+              {resendCooldown > 0 ? `Resend available in ${resendCooldown}s` : 'Resend Code'}
             </Button>
           </div>
         </div>
@@ -132,7 +118,7 @@ function VerifyEmailForm() {
         {/* Footer */}
         <p className="text-center text-sm text-muted-foreground">
           <Link
-            href={`/auth/login${from ? `?from=${from}` : ""}`}
+            href={`/auth/login${from ? `?from=${from}` : ''}`}
             className="font-medium text-primary hover:underline"
           >
             Back to login

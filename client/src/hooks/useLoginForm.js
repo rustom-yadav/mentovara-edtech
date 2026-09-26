@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
-import { validateLoginForm } from "@/utilities";
+import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
+import { validateLoginForm } from '@/utilities';
 
 export function useLoginForm() {
   const { handleLogin, loading } = useAuth();
   const searchParams = useSearchParams();
-  const from = searchParams.get("from");
+  const from = searchParams.get('from');
 
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   function onChange(e) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    if (error) setError("");
+    if (error) setError('');
   }
 
   async function onSubmit(e) {
     if (e) e.preventDefault();
-    
+
     // Validate form
     const validationError = validateLoginForm(form);
     if (validationError) {

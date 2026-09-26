@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 /*
  * Problem:
@@ -63,30 +63,28 @@ export function proxy(request) {
 
   // Public routes
   const publicPaths = [
-    "/auth/login",
-    "/auth/register",
-    "/auth/verify-email",
-    "/api",
-    "/",
-    "/courses",
+    '/auth/login',
+    '/auth/register',
+    '/auth/verify-email',
+    '/api',
+    '/',
+    '/courses',
   ];
 
-  const isPublic = publicPaths.some(
-    (path) => pathname === path || pathname.startsWith(`${path}/`)
-  );
+  const isPublic = publicPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`));
 
   if (isPublic) {
     return NextResponse.next();
   }
 
   // Check cookie
-  const accessToken = request.cookies.get("accessToken")?.value;
+  const accessToken = request.cookies.get('accessToken')?.value;
 
   if (!accessToken) {
-    const loginUrl = new URL("/auth/login", request.url);
+    const loginUrl = new URL('/auth/login', request.url);
 
-    const redirectPath = pathname + (search || "");
-    loginUrl.searchParams.set("from", redirectPath);
+    const redirectPath = pathname + (search || '');
+    loginUrl.searchParams.set('from', redirectPath);
 
     return NextResponse.redirect(loginUrl);
   }
@@ -96,6 +94,6 @@ export function proxy(request) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|temp/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|mp4|webm)$).*)",
+    '/((?!_next/static|_next/image|favicon.ico|temp/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|mp4|webm)$).*)',
   ],
 };

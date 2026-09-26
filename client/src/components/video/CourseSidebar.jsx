@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { PlayCircle, CheckCircle2, Circle } from "lucide-react";
+import Link from 'next/link';
+import { PlayCircle, CheckCircle2, Circle } from 'lucide-react';
 
 /**
  * Sidebar curriculum list shown on the Watch page.
@@ -46,9 +46,7 @@ export default function CourseSidebar({
                 href={`/watch/${courseId}/${video._id}`}
                 onClick={onNavigate}
                 className={`flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
-                  isCurrent
-                    ? "bg-primary/10 text-primary font-medium"
-                    : "hover:bg-muted/50"
+                  isCurrent ? 'bg-primary/10 text-primary font-medium' : 'hover:bg-muted/50'
                 }`}
               >
                 {isDone ? (

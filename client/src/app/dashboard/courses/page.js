@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { Plus, BookOpen, Loader2, Trash2, Settings, Eye, EyeOff } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useInstructorCourses } from "@/hooks/useInstructorCourses";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Plus, BookOpen, Loader2, Trash2, Settings, Eye, EyeOff } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useInstructorCourses } from '@/hooks/useInstructorCourses';
 
 export default function InstructorCoursesPage() {
   const { courses, loading, isInstructor, handleDelete } = useInstructorCourses();
@@ -26,9 +26,7 @@ export default function InstructorCoursesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">My Courses</h1>
-          <p className="mt-1 text-muted-foreground">
-            Create and manage your courses
-          </p>
+          <p className="mt-1 text-muted-foreground">Create and manage your courses</p>
         </div>
         <Link href="/dashboard/courses/new">
           <Button size="sm">
@@ -66,12 +64,7 @@ export default function InstructorCoursesPage() {
               {/* Thumbnail */}
               <div className="relative hidden size-16 shrink-0 overflow-hidden rounded-lg bg-muted sm:block">
                 {course.thumbnail ? (
-                  <Image
-                    src={course.thumbnail}
-                    alt={course.title}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={course.thumbnail} alt={course.title} fill className="object-cover" />
                 ) : (
                   <div className="flex h-full items-center justify-center">
                     <BookOpen className="size-6 text-muted-foreground/40" />
@@ -89,10 +82,10 @@ export default function InstructorCoursesPage() {
                     ) : (
                       <EyeOff className="size-3" />
                     )}
-                    {course.isPublished ? "Published" : "Draft"}
+                    {course.isPublished ? 'Published' : 'Draft'}
                   </span>
                   <span>{course.enrolledStudents || 0} students</span>
-                  <span>{course.price > 0 ? `₹${course.price}` : "Free"}</span>
+                  <span>{course.price > 0 ? `₹${course.price}` : 'Free'}</span>
                 </div>
               </div>
 

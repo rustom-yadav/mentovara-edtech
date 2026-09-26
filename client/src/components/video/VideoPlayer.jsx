@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import Image from "next/image";
+import { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import {
   Play,
   Pause,
@@ -12,14 +12,14 @@ import {
   Loader2,
   SkipForward,
   SkipBack,
-} from "lucide-react";
+} from 'lucide-react';
 
 function formatTime(seconds) {
-  if (!seconds || isNaN(seconds)) return "0:00";
+  if (!seconds || isNaN(seconds)) return '0:00';
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
-  const pad = (n) => String(n).padStart(2, "0");
+  const pad = (n) => String(n).padStart(2, '0');
   return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`;
 }
 
@@ -29,10 +29,10 @@ function getPosterFromUrl(videoUrl) {
   if (!videoUrl) return null;
   try {
     const url = new URL(videoUrl);
-    const parts = url.pathname.split("/upload/");
+    const parts = url.pathname.split('/upload/');
     if (parts.length === 2) {
-      url.pathname = parts[0] + "/upload/so_0,w_1280,h_720,c_fill/" + parts[1];
-      return url.toString().replace(/\.[^.]+$/, ".jpg");
+      url.pathname = parts[0] + '/upload/so_0,w_1280,h_720,c_fill/' + parts[1];
+      return url.toString().replace(/\.[^.]+$/, '.jpg');
     }
   } catch {
     // not a valid URL
@@ -103,41 +103,41 @@ export default function VideoPlayer({ url, poster, onEnded }) {
       if (!videoRef.current || !started) return;
       const v = videoRef.current;
       switch (e.key) {
-        case " ":
-        case "k":
+        case ' ':
+        case 'k':
           e.preventDefault();
           v.paused ? v.play() : v.pause();
           break;
-        case "ArrowRight":
+        case 'ArrowRight':
           e.preventDefault();
           v.currentTime = Math.min(v.duration, v.currentTime + 10);
           break;
-        case "ArrowLeft":
+        case 'ArrowLeft':
           e.preventDefault();
           v.currentTime = Math.max(0, v.currentTime - 10);
           break;
-        case "ArrowUp":
+        case 'ArrowUp':
           e.preventDefault();
           v.volume = Math.min(1, v.volume + 0.1);
           setVolume(v.volume);
           break;
-        case "ArrowDown":
+        case 'ArrowDown':
           e.preventDefault();
           v.volume = Math.max(0, v.volume - 0.1);
           setVolume(v.volume);
           break;
-        case "m":
+        case 'm':
           v.muted = !v.muted;
           setMuted(v.muted);
           break;
-        case "f":
+        case 'f':
           toggleFullscreen();
           break;
       }
       resetHideTimer();
     }
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, [resetHideTimer, started]);
 
   // Fullscreen change listener
@@ -145,8 +145,8 @@ export default function VideoPlayer({ url, poster, onEnded }) {
     function onFsChange() {
       setIsFullscreen(!!document.fullscreenElement);
     }
-    document.addEventListener("fullscreenchange", onFsChange);
-    return () => document.removeEventListener("fullscreenchange", onFsChange);
+    document.addEventListener('fullscreenchange', onFsChange);
+    return () => document.removeEventListener('fullscreenchange', onFsChange);
   }, []);
 
   function togglePlay() {
@@ -342,7 +342,7 @@ export default function VideoPlayer({ url, poster, onEnded }) {
       {/* Bottom controls overlay */}
       <div
         className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-3 pt-12 transition-opacity duration-300 ${
-          showControls || !playing ? "opacity-100" : "opacity-0 pointer-events-none"
+          showControls || !playing ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         {/* Progress bar */}
@@ -426,11 +426,7 @@ export default function VideoPlayer({ url, poster, onEnded }) {
             onClick={toggleFullscreen}
             className="p-1.5 text-white/80 hover:text-white transition-colors"
           >
-            {isFullscreen ? (
-              <Minimize className="size-4" />
-            ) : (
-              <Maximize className="size-4" />
-            )}
+            {isFullscreen ? <Minimize className="size-4" /> : <Maximize className="size-4" />}
           </button>
         </div>
       </div>

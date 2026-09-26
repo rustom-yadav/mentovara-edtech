@@ -24,15 +24,15 @@ export const toFormData = (object) => {
  */
 export const validateImageFile = (file, maxMB = 2) => {
   if (!file) return null;
-  
-  if (!file.type.startsWith("image/")) {
-    return "Please upload a valid image file";
+
+  if (!file.type.startsWith('image/')) {
+    return 'Please upload a valid image file';
   }
-  
+
   const maxSize = maxMB * 1024 * 1024;
   if (file.size > maxSize) {
     return `Image size should be less than ${maxMB}MB`;
   }
-  
+
   return null;
 };

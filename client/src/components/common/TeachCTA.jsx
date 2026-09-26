@@ -1,10 +1,10 @@
-import { Sparkles, Users, Play } from "lucide-react";
+import { Sparkles, Users, Play } from 'lucide-react';
 
 const INSTRUCTOR_BENEFITS = [
-  "Create unlimited courses with sections and video lectures",
-  "Upload videos directly — we handle the streaming",
-  "Track how many students enroll in your courses",
-  "Full control to edit, publish, or unpublish anytime",
+  'Create unlimited courses with sections and video lectures',
+  'Upload videos directly — we handle the streaming',
+  'Track how many students enroll in your courses',
+  'Full control to edit, publish, or unpublish anytime',
 ];
 
 export default function TeachCTA() {
@@ -18,13 +18,11 @@ export default function TeachCTA() {
               For Instructors
             </div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Share your knowledge,{" "}
-              <span className="gradient-text">teach the world</span>
+              Share your knowledge, <span className="gradient-text">teach the world</span>
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Create your own courses with structured sections and video
-              lectures. Upload content, manage curriculum, and watch your
-              student community grow.
+              Create your own courses with structured sections and video lectures. Upload content,
+              manage curriculum, and watch your student community grow.
             </p>
             <ul className="mt-8 space-y-3">
               {INSTRUCTOR_BENEFITS.map((benefit) => (
@@ -52,38 +50,34 @@ export default function TeachCTA() {
                 </div>
               </div>
               <div className="space-y-3">
-                {["Getting Started", "Core Concepts", "Advanced Topics"].map(
-                  (title, i) => (
+                {['Getting Started', 'Core Concepts', 'Advanced Topics'].map((title, i) => (
+                  <div
+                    key={title}
+                    className="flex items-center gap-3 rounded-xl border border-border bg-muted/30 p-3.5"
+                  >
                     <div
-                      key={title}
-                      className="flex items-center gap-3 rounded-xl border border-border bg-muted/30 p-3.5"
+                      className={`flex size-8 items-center justify-center rounded-lg text-xs font-bold ${
+                        i === 0
+                          ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                          : i === 1
+                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                            : 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400'
+                      }`}
                     >
-                      <div
-                        className={`flex size-8 items-center justify-center rounded-lg text-xs font-bold ${
-                          i === 0
-                            ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                            : i === 1
-                              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                              : "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400"
-                        }`}
-                      >
-                        {i + 1}
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium">{title}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {i + 1} lecture{i !== 0 ? "s" : ""}
-                        </p>
-                      </div>
-                      <Play className="size-4 text-muted-foreground" />
+                      {i + 1}
                     </div>
-                  ),
-                )}
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">{title}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {i + 1} lecture{i !== 0 ? 's' : ''}
+                      </p>
+                    </div>
+                    <Play className="size-4 text-muted-foreground" />
+                  </div>
+                ))}
               </div>
               <div className="mt-4 flex items-center justify-between rounded-xl bg-primary/5 px-4 py-3">
-                <span className="text-xs font-medium text-primary">
-                  120+ students enrolled
-                </span>
+                <span className="text-xs font-medium text-primary">120+ students enrolled</span>
                 <span className="text-xs text-muted-foreground">Published</span>
               </div>
             </div>

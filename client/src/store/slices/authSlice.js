@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 // Initial auth state that matches the requested shape
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 
 // Simple synchronous reducers for auth; async logic will dispatch these
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     // Set user data and mark the session as authenticated

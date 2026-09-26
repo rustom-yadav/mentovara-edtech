@@ -4,7 +4,7 @@ A modern EdTech platform where instructors create structured video courses and s
 
 **Built by Rustom Yadav** · [MIT License](./LICENSE)
 
-🔗 **Repo:** [GitHub Repository](https://github.com/rustom-yadav/mentovara-edtech) 
+🔗 **Repo:** [GitHub Repository](https://github.com/rustom-yadav/mentovara-edtech)
 🌐 **Frontend:** [mentovara.vercel.app](https://mentovara.vercel.app)  
 🌐 **Backend API:** [mentovara-edtech-api.onrender.com](https://mentovara-edtech-api.onrender.com)
 
@@ -23,15 +23,15 @@ A modern EdTech platform where instructors create structured video courses and s
 
 ## 🛠️ Tech Stack
 
-| Layer    | Stack                          |
-| -------- | ------------------------------ |
+| Layer        | Stack                                                                               |
+| ------------ | ----------------------------------------------------------------------------------- |
 | **Frontend** | Next.js 16 (App Router), React 19, Tailwind CSS v4, Shadcn UI, Redux Toolkit, Axios |
-| **Backend**  | Node.js, Express 5, MongoDB, Mongoose |
-| **Payments** | Razorpay SDK |
-| **Email**    | Nodemailer (SMTP) |
-| **Auth**     | JWT (HTTP-only cookies) |
-| **Media**    | Cloudinary (images & video) |
-| **DevOps**   | Docker & Docker Compose (Containerized Backend) |
+| **Backend**  | Node.js, Express 5, MongoDB, Mongoose                                               |
+| **Payments** | Razorpay SDK                                                                        |
+| **Email**    | Nodemailer (SMTP)                                                                   |
+| **Auth**     | JWT (HTTP-only cookies)                                                             |
+| **Media**    | Cloudinary (images & video)                                                         |
+| **DevOps**   | Docker & Docker Compose (Containerized Backend)                                     |
 
 ---
 
@@ -45,10 +45,10 @@ Mentovara/
 └── README.md         # You are here
 ```
 
-- **[client/](./client/)** — 
-Frontend app (see [client/README.md](./client/README.md))
-- **[server/](./server/)** — 
-Backend API (see [server/README.md](./server/README.md))
+- **[client/](./client/)** —
+  Frontend app (see [client/README.md](./client/README.md))
+- **[server/](./server/)** —
+  Backend API (see [server/README.md](./server/README.md))
 
 ## Quick Start
 
@@ -70,6 +70,7 @@ npm run dev
 ```
 
 **Alternative: Run Backend with Docker (Recommended for Dev/Test)**
+
 ```bash
 cd server
 docker-compose up -d --build
@@ -107,15 +108,15 @@ App runs at `http://localhost:3000`.
 
 Before deploying to platforms like Vercel (Frontend) and Render/Railway (Backend):
 
-| Check | Requirement |
-| ----- | ----------- |
-| `NEXT_PUBLIC_BACKEND_URL` | Set to your live API URL (Client Env) |
-| `CORS_ORIGIN` | Set to your frontend URL (Server Env) |
-| `NODE_ENV` | Must be set to `production` |
-| `RAZORPAY_WEBHOOK_SECRET` | For secure payment verification |
-| `SMTP_*` Keys | Verify email sender configuration |
-| JWT Secrets | Use strong, random strings for production |
-| Database | Ensure MongoDB Atlas IP whitelist is updated |
+| Check                     | Requirement                                  |
+| ------------------------- | -------------------------------------------- |
+| `NEXT_PUBLIC_BACKEND_URL` | Set to your live API URL (Client Env)        |
+| `CORS_ORIGIN`             | Set to your frontend URL (Server Env)        |
+| `NODE_ENV`                | Must be set to `production`                  |
+| `RAZORPAY_WEBHOOK_SECRET` | For secure payment verification              |
+| `SMTP_*` Keys             | Verify email sender configuration            |
+| JWT Secrets               | Use strong, random strings for production    |
+| Database                  | Ensure MongoDB Atlas IP whitelist is updated |
 
 ---
 

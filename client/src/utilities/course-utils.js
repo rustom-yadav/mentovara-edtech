@@ -2,7 +2,7 @@
  * Formats seconds into h m string (e.g., "1h 30m")
  */
 export function formatDuration(seconds) {
-  if (!seconds) return "0m";
+  if (!seconds) return '0m';
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   return h > 0 ? `${h}h ${m}m` : `${m}m`;
@@ -14,9 +14,7 @@ export function formatDuration(seconds) {
 export function calculateTotalDuration(sections) {
   if (!sections) return 0;
   return sections.reduce(
-    (sum, sec) =>
-      sum +
-      (sec.videos?.reduce((vSum, v) => vSum + (v.duration || 0), 0) || 0),
+    (sum, sec) => sum + (sec.videos?.reduce((vSum, v) => vSum + (v.duration || 0), 0) || 0),
     0
   );
 }
@@ -45,9 +43,7 @@ export function findFirstUnwatched(sections, completedVideoIds) {
   const allVideos = sections.flatMap((s) => s.videos || []);
   if (allVideos.length === 0) return null;
 
-  const firstUnwatched = allVideos.find(
-    (v) => !completedVideoIds?.includes(v._id)
-  );
+  const firstUnwatched = allVideos.find((v) => !completedVideoIds?.includes(v._id));
 
   return firstUnwatched || allVideos[0];
 }

@@ -1,25 +1,17 @@
-"use client";
+'use client';
 
-import { Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useLoginForm } from "@/hooks/useLoginForm";
+import { Suspense } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useLoginForm } from '@/hooks/useLoginForm';
 
 function LoginForm() {
-  const {
-    form,
-    loading,
-    error,
-    showPassword,
-    from,
-    onChange,
-    onSubmit,
-    togglePassword,
-  } = useLoginForm();
+  const { form, loading, error, showPassword, from, onChange, onSubmit, togglePassword } =
+    useLoginForm();
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
@@ -73,7 +65,7 @@ function LoginForm() {
                 <Input
                   id="password"
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   value={form.password}
                   onChange={onChange}
                   autoComplete="current-password"
@@ -85,11 +77,7 @@ function LoginForm() {
                   onClick={togglePassword}
                   tabIndex={-1}
                 >
-                  {showPassword ? (
-                    <EyeOff className="size-4" />
-                  ) : (
-                    <Eye className="size-4" />
-                  )}
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                 </button>
               </div>
             </div>
@@ -102,19 +90,14 @@ function LoginForm() {
             )}
 
             {/* Submit */}
-            <Button
-              type="submit"
-              className="w-full"
-              size="lg"
-              disabled={loading}
-            >
+            <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (
                 <>
                   <Loader2 className="size-4 animate-spin" data-icon="inline-start" />
                   Logging in…
                 </>
               ) : (
-                "Log in"
+                'Log in'
               )}
             </Button>
           </form>
@@ -122,9 +105,9 @@ function LoginForm() {
 
         {/* Footer */}
         <p className="text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?{' '}
           <Link
-            href={`/auth/register${from ? `?from=${encodeURIComponent(from)}` : ""}`}
+            href={`/auth/register${from ? `?from=${encodeURIComponent(from)}` : ''}`}
             className="font-medium text-primary hover:underline"
           >
             Create one

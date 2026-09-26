@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { Sparkles } from 'lucide-react';
 
 export default function HeroSection() {
   return (
@@ -13,13 +13,11 @@ export default function HeroSection() {
           Free to join — no credit card needed
         </div>
         <h1 className="max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-          Master New Skills with{" "}
-          <span className="gradient-text">Expert-Led Video Courses</span>
+          Master New Skills with <span className="gradient-text">Expert-Led Video Courses</span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Mentovara is where instructors create structured, high-quality video
-          courses and students learn with real-time progress tracking — all in
-          one clean, distraction-free platform.
+          Mentovara is where instructors create structured, high-quality video courses and students
+          learn with real-time progress tracking — all in one clean, distraction-free platform.
         </p>
       </div>
     </section>

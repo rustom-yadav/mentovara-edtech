@@ -11,13 +11,13 @@ export const isValidEmail = (email) => {
  */
 export const validateRegisterForm = (values) => {
   if (!values.fullName || !values.username || !values.email || !values.password) {
-    return "Please fill in all fields";
+    return 'Please fill in all fields';
   }
   if (!isValidEmail(values.email)) {
-    return "Please enter a valid email address";
+    return 'Please enter a valid email address';
   }
   if (values.password.length < 8) {
-    return "Password must be at least 8 characters";
+    return 'Password must be at least 8 characters';
   }
   return null;
 };
@@ -27,10 +27,10 @@ export const validateRegisterForm = (values) => {
  */
 export const validateLoginForm = (values) => {
   if (!values.email || !values.password) {
-    return "Please fill in all fields";
+    return 'Please fill in all fields';
   }
   if (!isValidEmail(values.email)) {
-    return "Please enter a valid email address";
+    return 'Please enter a valid email address';
   }
   return null;
 };
@@ -40,7 +40,7 @@ export const validateLoginForm = (values) => {
  */
 export const validateProfileForm = (values) => {
   if (!values.fullName?.trim()) {
-    return "Full name is required";
+    return 'Full name is required';
   }
   return null;
 };

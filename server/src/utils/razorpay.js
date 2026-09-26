@@ -1,12 +1,12 @@
-import Razorpay from "razorpay";
-import crypto from "crypto";
-import { ApiError } from "./ApiError.js";
+import Razorpay from 'razorpay';
+import crypto from 'crypto';
+import { ApiError } from './ApiError.js';
 
 // Initialize Razorpay instance
 // Ensure these environment variables are defined in your .env file
 export const razorpayInstance = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
 /**
@@ -17,29 +17,29 @@ export const razorpayInstance = new Razorpay({
  * @param {Object} notes - Optional metadata notes
  * @returns {Promise<Object>} - The created order object
  */
-export const createRazorpayOrder = async (amount, currency = "INR", receipt, notes = {}) => {
-    try {
-        const options = {
-            amount: Math.round(amount), // Ensure it's an integer
-            currency,
-            receipt,
-            notes,
-        };
+export const createRazorpayOrder = async (amount, currency = 'INR', receipt, notes = {}) => {
+  try {
+    const options = {
+      amount: Math.round(amount), // Ensure it's an integer
+      currency,
+      receipt,
+      notes,
+    };
 
-        const order = await razorpayInstance.orders.create(options);
+    const order = await razorpayInstance.orders.create(options);
 
-        if (!order) {
-            throw new ApiError(500, "Failed to create Razorpay order");
-        }
-
-        return order;
-    } catch (error) {
-        console.error("Razorpay Order Creation Error:", error);
-        throw new ApiError(
-            error.statusCode || 500,
-            error.message || "Error occurred while creating Razorpay order"
-        );
+    if (!order) {
+      throw new ApiError(500, 'Failed to create Razorpay order');
     }
+
+    return order;
+  } catch (error) {
+    console.error('Razorpay Order Creation Error:', error);
+    throw new ApiError(
+      error.statusCode || 500,
+      error.message || 'Error occurred while creating Razorpay order'
+    );
+  }
 };
 
 /**
@@ -50,18 +50,18 @@ export const createRazorpayOrder = async (amount, currency = "INR", receipt, not
  * @returns {boolean} - True if signature is valid
  */
 export const verifyRazorpaySignature = (orderId, paymentId, signature) => {
-    try {
-        const body = orderId + "|" + paymentId;
-        const expectedSignature = crypto
-            .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-            .update(body.toString())
-            .digest("hex");
+  try {
+    const body = orderId + '|' + paymentId;
+    const expectedSignature = crypto
+      .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+      .update(body.toString())
+      .digest('hex');
 
-        return expectedSignature === signature;
-    } catch (error) {
-        console.error("Signature Verification Error:", error);
-        return false;
-    }
+    return expectedSignature === signature;
+  } catch (error) {
+    console.error('Signature Verification Error:', error);
+    return false;
+  }
 };
 
 /**
@@ -71,18 +71,15 @@ export const verifyRazorpaySignature = (orderId, paymentId, signature) => {
  * @returns {boolean} - True if webhook signature is valid
  */
 export const verifyWebhookSignature = (rawBody, signature) => {
-    try {
-        const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
-        
-        // Manual crypto check using exactly the raw bytes received from Razorpay
-        const expectedSignature = crypto
-            .createHmac("sha256", secret)
-            .update(rawBody)
-            .digest("hex");
+  try {
+    const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
 
-        return expectedSignature === signature;
-    } catch (error) {
-        console.error("Webhook Verification Error:", error);
-        return false;
-    }
+    // Manual crypto check using exactly the raw bytes received from Razorpay
+    const expectedSignature = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
+
+    return expectedSignature === signature;
+  } catch (error) {
+    console.error('Webhook Verification Error:', error);
+    return false;
+  }
 };

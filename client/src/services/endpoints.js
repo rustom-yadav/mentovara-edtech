@@ -1,27 +1,25 @@
 // Single source of truth for the backend base URL (Now routes through Next.js proxy)
-export const API_URL =
-  process.env.NEXT_PUBLIC_INTERNAL_API_URL || "/api";
+export const API_URL = process.env.NEXT_PUBLIC_INTERNAL_API_URL || '/api';
 
 // Direct backend URL — bypasses Next.js proxy for large file uploads (videos)
 // Next.js rewrites / Vercel serverless functions have a ~4.5MB body size limit,
 // so video uploads must go directly to the backend.
-export const DIRECT_API_URL =
-  `${process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000"}/api/v1`;
+export const DIRECT_API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'}/api/v1`;
 
 // All backend API endpoint paths (relative to API_URL)
 export const ENDPOINTS = {
   // Auth / Users
-  REGISTER: "/users/register",
-  LOGIN: "/users/login",
-  LOGOUT: "/users/logout",
-  PROFILE: "/users/profile",
-  UPDATE_PROFILE: "/users/update-profile",
-  REFRESH_TOKEN: "/users/refresh-token",
-  VERIFY_EMAIL: "/users/verify-email",
-  RESEND_VERIFICATION: "/users/resend-verification",
+  REGISTER: '/users/register',
+  LOGIN: '/users/login',
+  LOGOUT: '/users/logout',
+  PROFILE: '/users/profile',
+  UPDATE_PROFILE: '/users/update-profile',
+  REFRESH_TOKEN: '/users/refresh-token',
+  VERIFY_EMAIL: '/users/verify-email',
+  RESEND_VERIFICATION: '/users/resend-verification',
 
   // Courses
-  COURSES: "/courses",
+  COURSES: '/courses',
   COURSE_BY_ID: (id) => `/courses/${id}`,
   ENROLL: (id) => `/courses/${id}/enroll`,
 
@@ -31,17 +29,17 @@ export const ENDPOINTS = {
   SECTION_BY_ID: (sectionId) => `/sections/${sectionId}`,
 
   // Videos
-  VIDEOS: "/videos",
+  VIDEOS: '/videos',
   VIDEO_BY_ID: (id) => `/videos/${id}`,
 
   // Progress
   PROGRESS: (courseId) => `/progress/${courseId}`,
-  MARK_COMPLETE: "/progress/complete",
+  MARK_COMPLETE: '/progress/complete',
 
   // Payments
-  INITIATE_PAYMENT: "/payments/initiate",
-  VERIFY_PAYMENT: "/payments/verify",
+  INITIATE_PAYMENT: '/payments/initiate',
+  VERIFY_PAYMENT: '/payments/verify',
 
   // Health
-  HEALTH: "/health",
+  HEALTH: '/health',
 };

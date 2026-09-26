@@ -17,7 +17,14 @@
     "start:server": "pnpm --filter server start",
     "lint": "pnpm -r lint",
     "lint:client": "pnpm --filter client lint",
-    "lint:server": "pnpm --filter server lint"
+    "lint:server": "pnpm --filter server lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
-  "packageManager": "pnpm@12.6.0"
+  "packageManager": "pnpm@12.6.0",
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "prettier": "^3.9.9"
+  }
 }

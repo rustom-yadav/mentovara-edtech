@@ -1,16 +1,10 @@
-"use client";
+'use client';
 
-import {
-  Search,
-  Loader2,
-  BookOpen,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import CourseCard from "@/components/course/CourseCard";
-import { useCourses } from "@/hooks/useCourses";
+import { Search, Loader2, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import CourseCard from '@/components/course/CourseCard';
+import { useCourses } from '@/hooks/useCourses';
 
 export default function CoursesPage() {
   const {
@@ -29,13 +23,11 @@ export default function CoursesPage() {
       {/* Header */}
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Explore Courses
-          </h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Explore Courses</h1>
           <p className="mt-1 text-muted-foreground">
             {pagination.totalDocs > 0
               ? `${pagination.totalDocs} courses available`
-              : "Find your next learning adventure"}
+              : 'Find your next learning adventure'}
           </p>
         </div>
 
@@ -65,15 +57,11 @@ export default function CoursesPage() {
             <p className="mt-1 text-sm text-muted-foreground">
               {debouncedQuery
                 ? `No results for "${debouncedQuery}". Try a different search term.`
-                : "There are no published courses yet. Check back soon!"}
+                : 'There are no published courses yet. Check back soon!'}
             </p>
           </div>
           {debouncedQuery && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setSearchQuery("")}
-            >
+            <Button variant="outline" size="sm" onClick={() => setSearchQuery('')}>
               Clear search
             </Button>
           )}

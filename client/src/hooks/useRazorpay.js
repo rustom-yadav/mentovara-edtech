@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback } from "react";
-import { loadExternalScript } from "@/utilities";
+import { useState, useEffect, useCallback } from 'react';
+import { loadExternalScript } from '@/utilities';
 
-const RAZORPAY_SCRIPT_URL = "https://checkout.razorpay.com/v1/checkout.js";
+const RAZORPAY_SCRIPT_URL = 'https://checkout.razorpay.com/v1/checkout.js';
 
 /**
  * Dynamically loads the Razorpay Checkout SDK and returns loading state.
@@ -25,7 +25,7 @@ export function useRazorpay() {
   const openCheckout = useCallback(
     (options) => {
       if (!isLoaded || !window.Razorpay) {
-        console.error("Razorpay SDK not loaded yet.");
+        console.error('Razorpay SDK not loaded yet.');
         return null;
       }
       const rzp = new window.Razorpay(options);

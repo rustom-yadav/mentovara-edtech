@@ -1,20 +1,12 @@
-"use client";
+'use client';
 
-import { useParams } from "next/navigation";
-import Link from "next/link";
-import {
-  PlayCircle,
-  CheckCircle2,
-  Circle,
-  ChevronLeft,
-  Loader2,
-  List,
-  X,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import VideoPlayer from "@/components/video/VideoPlayer";
-import CourseSidebar from "@/components/video/CourseSidebar";
-import { useWatchCourse } from "@/hooks/useWatchCourse";
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
+import { PlayCircle, CheckCircle2, Circle, ChevronLeft, Loader2, List, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import VideoPlayer from '@/components/video/VideoPlayer';
+import CourseSidebar from '@/components/video/CourseSidebar';
+import { useWatchCourse } from '@/hooks/useWatchCourse';
 
 export default function WatchPage() {
   const { courseId, videoId } = useParams();
@@ -83,9 +75,7 @@ export default function WatchPage() {
               </div>
               <h1 className="mt-1 text-lg font-semibold">{video.title}</h1>
               {video.description && (
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {video.description}
-                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{video.description}</p>
               )}
             </div>
 
@@ -147,18 +137,11 @@ export default function WatchPage() {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={() => toggleSidebar(false)}
-          />
+          <div className="absolute inset-0 bg-black/50" onClick={() => toggleSidebar(false)} />
           <aside className="relative ml-auto w-80 max-w-[85vw] overflow-y-auto bg-card shadow-xl">
             <div className="sticky top-0 flex items-center justify-between border-b border-border bg-card px-4 py-3">
               <span className="text-sm font-semibold">Curriculum</span>
-              <Button
-                variant="ghost"
-                size="icon-xs"
-                onClick={() => toggleSidebar(false)}
-              >
+              <Button variant="ghost" size="icon-xs" onClick={() => toggleSidebar(false)}>
                 <X className="size-4" />
               </Button>
             </div>

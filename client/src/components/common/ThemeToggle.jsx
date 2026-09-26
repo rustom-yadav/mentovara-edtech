@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
@@ -11,13 +11,13 @@ export default function ThemeToggle() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-    setDark(document.documentElement.classList.contains("dark"));
+    setDark(document.documentElement.classList.contains('dark'));
   }, []);
 
   function toggle() {
     const next = !dark;
     setDark(next);
-    document.documentElement.classList.toggle("dark", next);
+    document.documentElement.classList.toggle('dark', next);
     // Theme is intentionally NOT saved to localStorage — light is always the default on revisit
   }
 
