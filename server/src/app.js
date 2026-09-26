@@ -9,7 +9,7 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
-  })
+  }),
 );
 
 app.use(
@@ -18,7 +18,7 @@ app.use(
     verify: (req, res, buf) => {
       req.rawBody = buf.toString(); // Store raw chunks for Razorpay Signature Verification
     },
-  })
+  }),
 );
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 app.use(express.static('public'));

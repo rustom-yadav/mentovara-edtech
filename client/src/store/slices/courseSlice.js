@@ -15,7 +15,7 @@ export const fetchCourses = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch courses');
     }
-  }
+  },
 );
 
 // Fetch a single course by ID (includes instructor + sections)
@@ -28,7 +28,7 @@ export const fetchCourseById = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch course');
     }
-  }
+  },
 );
 
 // Create a course (instructor only, supports FormData for thumbnail)
@@ -43,7 +43,7 @@ export const createCourse = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to create course');
     }
-  }
+  },
 );
 
 // Update a course (instructor only)
@@ -58,7 +58,7 @@ export const updateCourse = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to update course');
     }
-  }
+  },
 );
 
 // Delete a course (instructor only, cascade deletes sections + videos)
@@ -71,7 +71,7 @@ export const deleteCourse = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to delete course');
     }
-  }
+  },
 );
 
 // Enroll in a course
@@ -84,7 +84,7 @@ export const enrollInCourse = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to enroll');
     }
-  }
+  },
 );
 
 // Fetch sections (with populated videos) for a course
@@ -97,7 +97,7 @@ export const fetchCourseSections = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch sections');
     }
-  }
+  },
 );
 
 const initialState = {

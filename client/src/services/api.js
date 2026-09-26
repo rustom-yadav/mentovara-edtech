@@ -72,7 +72,7 @@ api.interceptors.response.use(
         const { data } = await axios.post(
           `${API_URL}${ENDPOINTS.REFRESH_TOKEN}`,
           {},
-          { withCredentials: true }
+          { withCredentials: true },
         );
 
         // Store the new access token in Redux for direct backend requests
@@ -101,7 +101,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

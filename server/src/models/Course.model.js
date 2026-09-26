@@ -46,7 +46,7 @@ const courseSchema = new Schema(
       default: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 courseSchema.plugin(mongooseAggregatePaginate);

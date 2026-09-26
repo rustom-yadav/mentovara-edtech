@@ -23,7 +23,7 @@ const sectionSchema = new Schema(
       default: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Section = mongoose.model('Section', sectionSchema);

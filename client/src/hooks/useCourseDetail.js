@@ -71,7 +71,7 @@ export function useCourseDetail(courseId, router) {
         toast.success('Enrolled successfully!');
         await refreshUser();
         setCourse((prev) =>
-          prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev
+          prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev,
         );
 
         try {
@@ -130,7 +130,7 @@ export function useCourseDetail(courseId, router) {
 
             await refreshUser();
             setCourse((prev) =>
-              prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev
+              prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev,
             );
 
             try {

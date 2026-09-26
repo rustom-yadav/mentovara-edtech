@@ -98,7 +98,11 @@ const registerUser = asyncHandler(async (req, res) => {
     return res
       .status(201)
       .json(
-        new ApiResponse(201, createdUser, 'User registered successfully. Please verify your email.')
+        new ApiResponse(
+          201,
+          createdUser,
+          'User registered successfully. Please verify your email.',
+        ),
       );
   } catch (error) {
     // Clean up local temp file
@@ -145,8 +149,8 @@ const loginUser = asyncHandler(async (req, res) => {
         new ApiResponse(
           403,
           { email: user.email, isEmailVerified: false },
-          'Please verify your email address before logging in.'
-        )
+          'Please verify your email address before logging in.',
+        ),
       );
   }
 
@@ -166,8 +170,8 @@ const loginUser = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         { user: loggedInUser, accessToken, refreshToken },
-        'User logged in successfully'
-      )
+        'User logged in successfully',
+      ),
     );
 });
 
@@ -179,7 +183,7 @@ const logoutUser = asyncHandler(async (req, res) => {
         refreshToken: 1, // this removes the field
       },
     },
-    { new: true }
+    { new: true },
   );
 
   const options = getCookieOptions();
@@ -224,8 +228,8 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         new ApiResponse(
           200,
           { accessToken, refreshToken: newRefreshToken },
-          'Access token refreshed'
-        )
+          'Access token refreshed',
+        ),
       );
   } catch (error) {
     throw new ApiError(401, error?.message || 'Invalid refresh token');
@@ -240,7 +244,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(
-      new ApiResponse(200, { user: req.user, accessToken }, 'Current user fetched successfully')
+      new ApiResponse(200, { user: req.user, accessToken }, 'Current user fetched successfully'),
     );
 });
 
@@ -274,7 +278,7 @@ const updateProfile = asyncHandler(async (req, res) => {
       {
         $set: updateData,
       },
-      { new: true }
+      { new: true },
     );
 
     if (!user) {
@@ -298,7 +302,7 @@ const verifyEmail = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email }).select(
-    '+emailVerificationOTP +emailVerificationOTPExpiry'
+    '+emailVerificationOTP +emailVerificationOTPExpiry',
   );
 
   if (!user) {

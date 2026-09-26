@@ -19,7 +19,7 @@ const progressSchema = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Ensure one progress doc per user-course pair

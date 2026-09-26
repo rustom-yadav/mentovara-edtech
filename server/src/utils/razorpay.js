@@ -37,7 +37,7 @@ export const createRazorpayOrder = async (amount, currency = 'INR', receipt, not
     console.error('Razorpay Order Creation Error:', error);
     throw new ApiError(
       error.statusCode || 500,
-      error.message || 'Error occurred while creating Razorpay order'
+      error.message || 'Error occurred while creating Razorpay order',
     );
   }
 };

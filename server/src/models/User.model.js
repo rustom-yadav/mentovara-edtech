@@ -80,7 +80,7 @@ const userSchema = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Hash password before saving
@@ -105,7 +105,7 @@ userSchema.methods.generateAccessToken = function () {
       role: this.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '1d' }
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '1d' },
   );
 };
 
@@ -116,7 +116,7 @@ userSchema.methods.generateRefreshToken = function () {
       _id: this._id,
     },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY || '10d' }
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY || '10d' },
   );
 };
 

@@ -110,7 +110,7 @@ const getCourses = asyncHandler(async (req, res) => {
           $first: '$instructor',
         },
       },
-    }
+    },
   );
 
   const options = {
@@ -175,7 +175,7 @@ const updateCourse = asyncHandler(async (req, res) => {
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
       { $set: updateData },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedCourse) {
@@ -276,7 +276,7 @@ const enrollInCourse = asyncHandler(async (req, res) => {
     {
       $addToSet: { enrolledCourses: courseId },
     },
-    { new: true }
+    { new: true },
   );
 
   if (!updatedUser) {

@@ -24,7 +24,7 @@ const addSection = asyncHandler(async (req, res) => {
   checkOwnership(
     course.instructor,
     req.user._id,
-    'You are not authorized to add a section to this course'
+    'You are not authorized to add a section to this course',
   );
 
   const section = await Section.create({
@@ -55,7 +55,7 @@ const updateSection = asyncHandler(async (req, res) => {
   checkOwnership(
     section.course.instructor,
     req.user._id,
-    'You are not authorized to update this section'
+    'You are not authorized to update this section',
   );
 
   section.title = title;
@@ -86,7 +86,7 @@ const deleteSection = asyncHandler(async (req, res) => {
   checkOwnership(
     section.course.instructor,
     req.user._id,
-    'You are not authorized to delete this section'
+    'You are not authorized to delete this section',
   );
 
   const session = await mongoose.startSession();
@@ -112,7 +112,7 @@ const deleteSection = asyncHandler(async (req, res) => {
     await Course.findByIdAndUpdate(
       section.course._id,
       { $pull: { sections: sectionId } },
-      { session }
+      { session },
     );
 
     // Delete the section document

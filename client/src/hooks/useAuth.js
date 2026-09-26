@@ -87,7 +87,7 @@ export function useAuth() {
         dispatch(setLoading(false));
       }
     },
-    [dispatch, router]
+    [dispatch, router],
   );
 
   // Handle registration and then redirect to the login page.
@@ -118,7 +118,7 @@ export function useAuth() {
         dispatch(setLoading(false));
       }
     },
-    [dispatch, router]
+    [dispatch, router],
   );
 
   // Logout — backend clears accessToken + refreshToken cookies
@@ -150,7 +150,7 @@ export function useAuth() {
         dispatch(setLoading(false));
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   // Resend verification email

@@ -32,7 +32,7 @@ export function useRazorpay() {
       rzp.open();
       return rzp;
     },
-    [isLoaded]
+    [isLoaded],
   );
 
   return { isLoaded, openCheckout };

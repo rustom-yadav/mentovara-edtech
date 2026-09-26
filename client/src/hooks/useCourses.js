@@ -22,7 +22,7 @@ export function useCourses() {
     (page = 1) => {
       dispatch(fetchCourses({ page, limit: 12, query: debouncedQuery }));
     },
-    [dispatch, debouncedQuery]
+    [dispatch, debouncedQuery],
   );
 
   useEffect(() => {

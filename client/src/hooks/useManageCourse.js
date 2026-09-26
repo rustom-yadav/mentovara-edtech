@@ -96,8 +96,8 @@ export function useManageCourse(courseId) {
       const newVideo = res.data?.data;
       setSections((prev) =>
         prev.map((s) =>
-          s._id === sectionId ? { ...s, videos: [...(s.videos || []), newVideo] } : s
-        )
+          s._id === sectionId ? { ...s, videos: [...(s.videos || []), newVideo] } : s,
+        ),
       );
       toast.success('Video uploaded');
     } catch (err) {
@@ -114,8 +114,8 @@ export function useManageCourse(courseId) {
       await api.delete(ENDPOINTS.VIDEO_BY_ID(videoId));
       setSections((prev) =>
         prev.map((s) =>
-          s._id === sectionId ? { ...s, videos: s.videos.filter((v) => v._id !== videoId) } : s
-        )
+          s._id === sectionId ? { ...s, videos: s.videos.filter((v) => v._id !== videoId) } : s,
+        ),
       );
       toast.success('Video deleted');
     } catch {

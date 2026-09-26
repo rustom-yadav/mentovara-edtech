@@ -92,7 +92,6 @@ export default function VideoPlayer({ url, poster, onEnded }) {
   }, [playing]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     resetHideTimer();
     return () => clearTimeout(hideControlsTimer.current);
   }, [playing, resetHideTimer]);

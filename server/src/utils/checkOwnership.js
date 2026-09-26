@@ -11,7 +11,7 @@ import { ApiError } from './ApiError.js';
 export const checkOwnership = (
   ownerId,
   userId,
-  message = 'You are not authorized to perform this action'
+  message = 'You are not authorized to perform this action',
 ) => {
   if (ownerId.toString() !== userId.toString()) {
     throw new ApiError(403, message);

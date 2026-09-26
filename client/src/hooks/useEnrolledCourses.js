@@ -21,8 +21,8 @@ export function useEnrolledCourses() {
       setLoading(true);
       const results = await Promise.all(
         user.enrolledCourses.map((id) =>
-          api.get(ENDPOINTS.COURSE_BY_ID(id)).then((r) => r.data?.data)
-        )
+          api.get(ENDPOINTS.COURSE_BY_ID(id)).then((r) => r.data?.data),
+        ),
       );
       setCourses(results.filter(Boolean));
     } catch {

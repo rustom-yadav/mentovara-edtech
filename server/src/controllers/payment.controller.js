@@ -28,7 +28,7 @@ const fulfillEnrollment = async (userId, courseId, orderId, paymentId) => {
         status: 'completed',
         razorpayPaymentId: paymentId,
       },
-      { new: true, session }
+      { new: true, session },
     );
 
     if (!payment) {
@@ -47,7 +47,7 @@ const fulfillEnrollment = async (userId, courseId, orderId, paymentId) => {
           payments: payment._id,
         },
       },
-      { session }
+      { session },
     );
 
     // 4. Increment enrolledStudents count in Course
@@ -127,7 +127,7 @@ export const verifyPayment = asyncHandler(async (req, res) => {
   const isValid = verifyRazorpaySignature(
     razorpay_order_id,
     razorpay_payment_id,
-    razorpay_signature
+    razorpay_signature,
   );
 
   if (!isValid) {
@@ -183,7 +183,7 @@ export const razorpayWebhook = asyncHandler(async (req, res) => {
       try {
         await fulfillEnrollment(userId, courseId, orderId, paymentId);
         console.log(
-          `Webhook: Successfully fulfilled enrollment for user ${userId} in course ${courseId}`
+          `Webhook: Successfully fulfilled enrollment for user ${userId} in course ${courseId}`,
         );
       } catch (error) {
         console.error('Webhook Fulfillment Failed:', error);

@@ -42,7 +42,7 @@ const markVideoComplete = asyncHandler(async (req, res) => {
     {
       $addToSet: { completedVideos: videoId },
     },
-    { new: true, upsert: true } // Upsert handles creating it if it doesn't exist
+    { new: true, upsert: true }, // Upsert handles creating it if it doesn't exist
   );
 
   return res.status(200).json(new ApiResponse(200, progress, 'Video marked as complete'));

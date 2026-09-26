@@ -32,7 +32,7 @@ const paymentSchema = new Schema(
       default: 'pending',
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Payment = mongoose.model('Payment', paymentSchema);

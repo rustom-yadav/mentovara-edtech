@@ -15,7 +15,7 @@ export function calculateTotalDuration(sections) {
   if (!sections) return 0;
   return sections.reduce(
     (sum, sec) => sum + (sec.videos?.reduce((vSum, v) => vSum + (v.duration || 0), 0) || 0),
-    0
+    0,
   );
 }
 

@@ -74,7 +74,7 @@ export function useWatchCourse(courseId, videoId) {
 
   const progressPercent = useMemo(
     () => calculateProgressPercent(completedCount, totalVideos),
-    [completedCount, totalVideos]
+    [completedCount, totalVideos],
   );
 
   const toggleSidebar = (val) => setSidebarOpen(typeof val === 'boolean' ? val : !sidebarOpen);

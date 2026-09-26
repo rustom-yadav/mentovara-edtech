@@ -29,7 +29,7 @@ const addVideo = asyncHandler(async (req, res) => {
     checkOwnership(
       isValidSection.course.instructor,
       req.user._id,
-      'You are not authorized to add videos to this section'
+      'You are not authorized to add videos to this section',
     );
 
     // 2. File check
@@ -97,7 +97,7 @@ const deleteVideo = asyncHandler(async (req, res) => {
   checkOwnership(
     video.section.course.instructor,
     req.user._id,
-    'You are not authorized to delete this video'
+    'You are not authorized to delete this video',
   );
 
   // Attempt to delete from Cloudinary
