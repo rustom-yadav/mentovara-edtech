@@ -1,31 +1,28 @@
-import { BookOpen, GraduationCap, Play } from "lucide-react";
+import { BookOpen, GraduationCap, Play } from 'lucide-react';
 
 const STEPS = [
   {
-    step: "01",
+    step: '01',
     icon: BookOpen,
-    title: "Browse Courses",
+    title: 'Browse Courses',
     description:
-      "Explore a growing library of expert-led video courses across topics you care about.",
-    color: "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30",
+      'Explore a growing library of expert-led video courses across topics you care about.',
+    color: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
   },
   {
-    step: "02",
+    step: '02',
     icon: GraduationCap,
-    title: "Enroll Instantly",
-    description:
-      "One click to enroll — no credit card, no hassle. Start learning right away.",
-    color:
-      "text-violet-600 bg-violet-100 dark:text-violet-400 dark:bg-violet-900/30",
+    title: 'Enroll Instantly',
+    description: 'One click to enroll — no credit card, no hassle. Start learning right away.',
+    color: 'text-violet-600 bg-violet-100 dark:text-violet-400 dark:bg-violet-900/30',
   },
   {
-    step: "03",
+    step: '03',
     icon: Play,
-    title: "Learn & Track Progress",
+    title: 'Learn & Track Progress',
     description:
-      "Watch video lectures, mark them complete, and see your progress grow in real time.",
-    color:
-      "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30",
+      'Watch video lectures, mark them complete, and see your progress grow in real time.',
+    color: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
   },
 ];
 
@@ -35,8 +32,7 @@ export default function StepsSection() {
       <div className="section-container">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Start learning in{" "}
-            <span className="gradient-text">3 simple steps</span>
+            Start learning in <span className="gradient-text">3 simple steps</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
             No complicated setup. Browse, enroll, and learn — it&apos;s that easy.

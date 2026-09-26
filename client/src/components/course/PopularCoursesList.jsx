@@ -1,8 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
-import CourseCard from "@/components/course/CourseCard";
-import api from "@/services/api";
-import { ENDPOINTS } from "@/services/endpoints";
+'use client';
+import { useEffect, useState } from 'react';
+import CourseCard from '@/components/course/CourseCard';
+import api from '@/services/api';
+import { ENDPOINTS } from '@/services/endpoints';
 
 export default function PopularCoursesList() {
   const [popularCourses, setPopularCourses] = useState([]);
@@ -40,9 +40,7 @@ export default function PopularCoursesList() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Popular <span className="gradient-text">Courses</span>
             </h2>
-            <p className="mt-2 text-muted-foreground">
-              See what learners are exploring right now.
-            </p>
+            <p className="mt-2 text-muted-foreground">See what learners are exploring right now.</p>
           </div>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

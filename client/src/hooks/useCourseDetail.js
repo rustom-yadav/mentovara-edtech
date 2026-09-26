@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
-import { useAuth } from "./useAuth";
-import { useRazorpay } from "./useRazorpay";
-import api from "@/services/api";
-import { ENDPOINTS } from "@/services/endpoints";
-import { formatDuration, calculateTotalDuration, calculateProgressPercent } from "@/utilities";
-import { countTotalVideos, findFirstUnwatched } from "@/utilities";
+import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
+import { useAuth } from './useAuth';
+import { useRazorpay } from './useRazorpay';
+import api from '@/services/api';
+import { ENDPOINTS } from '@/services/endpoints';
+import { formatDuration, calculateTotalDuration, calculateProgressPercent } from '@/utilities';
+import { countTotalVideos, findFirstUnwatched } from '@/utilities';
 
 export function useCourseDetail(courseId, router) {
   const { user, isAuthenticated, refreshUser } = useAuth();
@@ -16,7 +16,7 @@ export function useCourseDetail(courseId, router) {
   const [progress, setProgress] = useState(null);
   const [loading, setLoading] = useState(true);
   const [enrolling, setEnrolling] = useState(false);
-  const [paymentStep, setPaymentStep] = useState("idle");
+  const [paymentStep, setPaymentStep] = useState('idle');
 
   useEffect(() => {
     async function load() {
@@ -29,7 +29,9 @@ export function useCourseDetail(courseId, router) {
           try {
             const [secRes, progRes] = await Promise.all([
               api.get(ENDPOINTS.COURSE_SECTIONS(courseId)).catch(() => ({ data: { data: [] } })),
-              api.get(ENDPOINTS.PROGRESS(courseId)).catch(() => ({ data: { data: { completedVideos: [] } } }))
+              api
+                .get(ENDPOINTS.PROGRESS(courseId))
+                .catch(() => ({ data: { data: { completedVideos: [] } } })),
             ]);
             setSections(secRes.data?.data || []);
             setProgress(progRes.data?.data || { completedVideos: [] });
@@ -66,16 +68,18 @@ export function useCourseDetail(courseId, router) {
       setEnrolling(true);
       try {
         await api.post(ENDPOINTS.ENROLL(courseId));
-        toast.success("Enrolled successfully!");
+        toast.success('Enrolled successfully!');
         await refreshUser();
-        setCourse((prev) => prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev);
-        
+        setCourse((prev) =>
+          prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev,
+        );
+
         try {
           const secRes = await api.get(ENDPOINTS.COURSE_SECTIONS(courseId));
           setSections(secRes.data?.data || []);
         } catch {}
       } catch (err) {
-        toast.error(err?.response?.data?.message || "Failed to enroll");
+        toast.error(err?.response?.data?.message || 'Failed to enroll');
       } finally {
         setEnrolling(false);
       }
@@ -83,36 +87,36 @@ export function useCourseDetail(courseId, router) {
     }
 
     if (!isRazorpayReady) {
-      toast.error("Payment system is loading. Please try again in a moment.");
+      toast.error('Payment system is loading. Please try again in a moment.');
       return;
     }
 
     setEnrolling(true);
-    setPaymentStep("initiating");
+    setPaymentStep('initiating');
 
     try {
       const { data } = await api.post(ENDPOINTS.INITIATE_PAYMENT, { courseId });
       const order = data?.data;
 
-      if (!order?.id) throw new Error("Failed to create payment order");
+      if (!order?.id) throw new Error('Failed to create payment order');
 
-      setPaymentStep("paying");
+      setPaymentStep('paying');
 
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,
-        currency: order.currency || "INR",
-        name: "Mentovara",
+        currency: order.currency || 'INR',
+        name: 'Mentovara',
         description: course.title,
         order_id: order.id,
-        image: "/temp/logo.png",
+        image: '/temp/logo.png',
         prefill: {
-          name: user?.fullName || "",
-          email: user?.email || "",
+          name: user?.fullName || '',
+          email: user?.email || '',
         },
-        theme: { color: "#4F46E5" },
+        theme: { color: '#4F46E5' },
         handler: async (response) => {
-          setPaymentStep("verifying");
+          setPaymentStep('verifying');
           try {
             await api.post(ENDPOINTS.VERIFY_PAYMENT, {
               razorpay_order_id: response.razorpay_order_id,
@@ -121,41 +125,43 @@ export function useCourseDetail(courseId, router) {
               courseId,
             });
 
-            setPaymentStep("success");
-            toast.success("🎉 Payment successful! Course unlocked!");
+            setPaymentStep('success');
+            toast.success('🎉 Payment successful! Course unlocked!');
 
             await refreshUser();
-            setCourse((prev) => prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev);
-            
+            setCourse((prev) =>
+              prev ? { ...prev, enrolledStudents: (prev.enrolledStudents || 0) + 1 } : prev,
+            );
+
             try {
               const secRes = await api.get(ENDPOINTS.COURSE_SECTIONS(courseId));
               setSections(secRes.data?.data || []);
             } catch {}
 
             setTimeout(() => {
-              setPaymentStep("idle");
+              setPaymentStep('idle');
               setEnrolling(false);
             }, 2500);
           } catch (err) {
-            setPaymentStep("idle");
+            setPaymentStep('idle');
             setEnrolling(false);
-            toast.error(err?.response?.data?.message || "Payment verification failed.");
+            toast.error(err?.response?.data?.message || 'Payment verification failed.');
           }
         },
         modal: {
           ondismiss: () => {
-            setPaymentStep("idle");
+            setPaymentStep('idle');
             setEnrolling(false);
-            toast.info("Payment cancelled. You can try again anytime.");
+            toast.info('Payment cancelled. You can try again anytime.');
           },
         },
       };
 
       openCheckout(options);
     } catch (err) {
-      setPaymentStep("idle");
+      setPaymentStep('idle');
       setEnrolling(false);
-      toast.error(err?.response?.data?.message || "Could not initiate payment. Please try again.");
+      toast.error(err?.response?.data?.message || 'Could not initiate payment. Please try again.');
     }
   }
 
@@ -187,6 +193,6 @@ export function useCourseDetail(courseId, router) {
     totalDuration,
     continueVideo,
     formatDuration,
-    handlePrimaryAction
+    handlePrimaryAction,
   };
 }

@@ -11,15 +11,15 @@ export function loadExternalScript(url, timeoutMs = 15000) {
     // Check if script already exists
     const existingScript = document.querySelector(`script[src="${url}"]`);
     if (existingScript) {
-      if (existingScript.dataset.loaded === "true") {
+      if (existingScript.dataset.loaded === 'true') {
         clearTimeout(timeout);
         resolve(true);
       } else {
-        existingScript.addEventListener("load", () => {
+        existingScript.addEventListener('load', () => {
           clearTimeout(timeout);
           resolve(true);
         });
-        existingScript.addEventListener("error", () => {
+        existingScript.addEventListener('error', () => {
           clearTimeout(timeout);
           reject(new Error(`Failed to load script ${url}`));
         });
@@ -27,13 +27,13 @@ export function loadExternalScript(url, timeoutMs = 15000) {
       return;
     }
 
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src = url;
     script.async = true;
-    script.dataset.loaded = "false";
-    
+    script.dataset.loaded = 'false';
+
     script.onload = () => {
-      script.dataset.loaded = "true";
+      script.dataset.loaded = 'true';
       clearTimeout(timeout);
       resolve(true);
     };

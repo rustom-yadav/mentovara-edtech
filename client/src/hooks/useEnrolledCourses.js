@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useCallback } from "react";
-import { toast } from "sonner";
-import { useAuth } from "@/hooks/useAuth";
-import api from "@/services/api";
-import { ENDPOINTS } from "@/services/endpoints";
+import { useEffect, useState, useCallback } from 'react';
+import { toast } from 'sonner';
+import { useAuth } from '@/hooks/useAuth';
+import api from '@/services/api';
+import { ENDPOINTS } from '@/services/endpoints';
 
 export function useEnrolledCourses() {
   const { user } = useAuth();
@@ -26,7 +26,7 @@ export function useEnrolledCourses() {
       );
       setCourses(results.filter(Boolean));
     } catch {
-      toast.error("Failed to load enrolled courses");
+      toast.error('Failed to load enrolled courses');
     } finally {
       setLoading(false);
     }

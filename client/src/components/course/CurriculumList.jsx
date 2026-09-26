@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { CheckCircle2, PlayCircle } from "lucide-react";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { CheckCircle2, PlayCircle } from 'lucide-react';
 
 export default function CurriculumList({
   sections,
@@ -35,9 +35,8 @@ export default function CurriculumList({
       ) : (
         <>
           <p className="mt-1 text-sm text-muted-foreground">
-            {sections.length} section{sections.length !== 1 && "s"} &middot;{" "}
-            {totalVideos} lecture{totalVideos !== 1 && "s"} &middot;{" "}
-            {formatDuration(totalDuration)} total
+            {sections.length} section{sections.length !== 1 && 's'} &middot; {totalVideos} lecture
+            {totalVideos !== 1 && 's'} &middot; {formatDuration(totalDuration)} total
           </p>
           <div className="mt-6 space-y-3">
             {sections.map((section, sIdx) => (
@@ -62,7 +61,7 @@ export default function CurriculumList({
                       const rowContent = (
                         <div
                           className={`flex items-center gap-3 px-5 py-3 text-sm transition-colors ${
-                            isEnrolled ? "hover:bg-muted/50 cursor-pointer" : ""
+                            isEnrolled ? 'hover:bg-muted/50 cursor-pointer' : ''
                           }`}
                         >
                           {isDone ? (
@@ -80,7 +79,11 @@ export default function CurriculumList({
                       );
 
                       return isEnrolled ? (
-                        <Link key={video._id} href={`/watch/${courseId}/${video._id}`} className="block">
+                        <Link
+                          key={video._id}
+                          href={`/watch/${courseId}/${video._id}`}
+                          className="block"
+                        >
                           {rowContent}
                         </Link>
                       ) : (

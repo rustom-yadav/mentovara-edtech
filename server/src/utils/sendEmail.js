@@ -1,8 +1,8 @@
-import nodemailer from "nodemailer";
-import dns from "dns";
+import nodemailer from 'nodemailer';
+import dns from 'dns';
 
 // Force IPv4 DNS resolution (Render free tier doesn't support IPv6 outbound)
-dns.setDefaultResultOrder("ipv4first");
+dns.setDefaultResultOrder('ipv4first');
 
 // Lazy singleton — transporter is created once and reused for all emails
 let transporter = null;
@@ -10,7 +10,7 @@ let transporter = null;
 function getTransporter() {
   if (!transporter) {
     transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: Number(process.env.SMTP_PORT) || 587,
       secure: false, // false for port 587 (STARTTLS)
       auth: {
@@ -19,8 +19,8 @@ function getTransporter() {
       },
       // Timeouts to prevent hanging connections
       connectionTimeout: 15000, // 15 seconds to establish connection
-      greetingTimeout: 15000,   // 15 seconds for server greeting
-      socketTimeout: 20000,     // 20 seconds for socket inactivity
+      greetingTimeout: 15000, // 15 seconds for server greeting
+      socketTimeout: 20000, // 20 seconds for socket inactivity
       tls: {
         rejectUnauthorized: false,
       },
@@ -42,7 +42,7 @@ function getTransporter() {
  * @param {string} options.message - Email body (HTML)
  */
 const sendEmail = async (options) => {
-  const fromName = process.env.FROM_NAME || "Mentovara";
+  const fromName = process.env.FROM_NAME || 'Mentovara';
 
   const mailOptions = {
     from: `"${fromName}" <${process.env.FROM_EMAIL}>`,

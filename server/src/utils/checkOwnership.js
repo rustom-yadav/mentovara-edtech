@@ -1,4 +1,4 @@
-import { ApiError } from "./ApiError.js";
+import { ApiError } from './ApiError.js';
 
 /**
  * Verify that the requesting user owns the resource.
@@ -8,8 +8,12 @@ import { ApiError } from "./ApiError.js";
  * @param {ObjectId|string} userId  - The requesting user's ID (req.user._id)
  * @param {string} [message]       - Optional custom error message
  */
-export const checkOwnership = (ownerId, userId, message = "You are not authorized to perform this action") => {
-    if (ownerId.toString() !== userId.toString()) {
-        throw new ApiError(403, message);
-    }
+export const checkOwnership = (
+  ownerId,
+  userId,
+  message = 'You are not authorized to perform this action',
+) => {
+  if (ownerId.toString() !== userId.toString()) {
+    throw new ApiError(403, message);
+  }
 };

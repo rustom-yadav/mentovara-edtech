@@ -4,7 +4,7 @@ services:
     container_name: mentovara-server
     restart: on-failure
     ports:
-      - "8000:8000"
+      - '8000:8000'
     environment:
       - NODE_ENV=production
       # Connect using internal network and auth credentials
@@ -26,7 +26,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     ports:
-      - "127.0.0.1:27017:27017" # Binds to localhost only, NOT public internet
+      - '127.0.0.1:27017:27017' # Binds to localhost only, NOT public internet
     volumes:
       - mentovara-mongo-data:/data/db
     networks:
@@ -34,13 +34,13 @@ services:
     healthcheck:
       test:
         [
-          "CMD",
-          "mongosh",
-          "-u",
-          "$MONGO_INITDB_ROOT_USERNAME",
-          "-p",
-          "$MONGO_INITDB_ROOT_PASSWORD",
-          "--eval",
+          'CMD',
+          'mongosh',
+          '-u',
+          '$MONGO_INITDB_ROOT_USERNAME',
+          '-p',
+          '$MONGO_INITDB_ROOT_PASSWORD',
+          '--eval',
           "db.adminCommand('ping')",
         ]
       interval: 10s

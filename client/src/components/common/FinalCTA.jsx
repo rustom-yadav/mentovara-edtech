@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function FinalCTA() {
   return (
@@ -14,16 +14,12 @@ export default function FinalCTA() {
               Your learning journey starts here
             </h2>
             <p className="mt-4 text-primary-foreground/80">
-              Join Mentovara today — create a free account in seconds and start
-              exploring courses built by real instructors.
+              Join Mentovara today — create a free account in seconds and start exploring courses
+              built by real instructors.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link href="/auth/register">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="gap-2 px-6 font-semibold"
-                >
+                <Button size="lg" variant="secondary" className="gap-2 px-6 font-semibold">
                   Create Free Account
                   <ArrowRight className="size-4" />
                 </Button>

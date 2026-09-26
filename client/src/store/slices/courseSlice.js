@@ -1,123 +1,103 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "@/services/api";
-import { ENDPOINTS } from "@/services/endpoints";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import api from '@/services/api';
+import { ENDPOINTS } from '@/services/endpoints';
 
 // Fetch published courses (paginated + searchable)
 // Backend throws 404 when no courses match — we return empty pagination
 export const fetchCourses = createAsyncThunk(
-  "course/fetchCourses",
-  async ({ page = 1, limit = 12, query = "" } = {}, { rejectWithValue }) => {
+  'course/fetchCourses',
+  async ({ page = 1, limit = 12, query = '' } = {}, { rejectWithValue }) => {
     try {
       const params = new URLSearchParams({ page, limit });
-      if (query) params.append("query", query);
+      if (query) params.append('query', query);
       const res = await api.get(`${ENDPOINTS.COURSES}?${params}`);
       return res.data?.data;
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to fetch courses"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch courses');
     }
-  }
+  },
 );
 
 // Fetch a single course by ID (includes instructor + sections)
 export const fetchCourseById = createAsyncThunk(
-  "course/fetchCourseById",
+  'course/fetchCourseById',
   async (courseId, { rejectWithValue }) => {
     try {
       const res = await api.get(ENDPOINTS.COURSE_BY_ID(courseId));
       return res.data?.data;
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to fetch course"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch course');
     }
-  }
+  },
 );
 
 // Create a course (instructor only, supports FormData for thumbnail)
 export const createCourse = createAsyncThunk(
-  "course/createCourse",
+  'course/createCourse',
   async (formData, { rejectWithValue }) => {
     try {
       const res = await api.post(ENDPOINTS.COURSES, formData, {
-        headers:
-          formData instanceof FormData
-            ? { "Content-Type": "multipart/form-data" }
-            : {},
+        headers: formData instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {},
       });
       return res.data?.data;
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to create course"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to create course');
     }
-  }
+  },
 );
 
 // Update a course (instructor only)
 export const updateCourse = createAsyncThunk(
-  "course/updateCourse",
+  'course/updateCourse',
   async ({ courseId, formData }, { rejectWithValue }) => {
     try {
       const res = await api.patch(ENDPOINTS.COURSE_BY_ID(courseId), formData, {
-        headers:
-          formData instanceof FormData
-            ? { "Content-Type": "multipart/form-data" }
-            : {},
+        headers: formData instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {},
       });
       return res.data?.data;
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to update course"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to update course');
     }
-  }
+  },
 );
 
 // Delete a course (instructor only, cascade deletes sections + videos)
 export const deleteCourse = createAsyncThunk(
-  "course/deleteCourse",
+  'course/deleteCourse',
   async (courseId, { rejectWithValue }) => {
     try {
       await api.delete(ENDPOINTS.COURSE_BY_ID(courseId));
       return courseId;
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to delete course"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to delete course');
     }
-  }
+  },
 );
 
 // Enroll in a course
 export const enrollInCourse = createAsyncThunk(
-  "course/enrollInCourse",
+  'course/enrollInCourse',
   async (courseId, { rejectWithValue }) => {
     try {
       await api.post(ENDPOINTS.ENROLL(courseId));
       return courseId;
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to enroll"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to enroll');
     }
-  }
+  },
 );
 
 // Fetch sections (with populated videos) for a course
 export const fetchCourseSections = createAsyncThunk(
-  "course/fetchCourseSections",
+  'course/fetchCourseSections',
   async (courseId, { rejectWithValue }) => {
     try {
       const res = await api.get(ENDPOINTS.COURSE_SECTIONS(courseId));
       return res.data?.data || [];
     } catch (err) {
-      return rejectWithValue(
-        err.response?.data?.message || "Failed to fetch sections"
-      );
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch sections');
     }
-  }
+  },
 );
 
 const initialState = {
@@ -136,7 +116,7 @@ const initialState = {
 };
 
 const courseSlice = createSlice({
-  name: "course",
+  name: 'course',
   initialState,
   reducers: {
     clearCourseError(state) {
@@ -203,9 +183,7 @@ const courseSlice = createSlice({
       .addCase(updateCourse.fulfilled, (state, action) => {
         state.isLoading = false;
         state.currentCourse = action.payload;
-        const idx = state.courses.findIndex(
-          (c) => c._id === action.payload?._id
-        );
+        const idx = state.courses.findIndex((c) => c._id === action.payload?._id);
         if (idx !== -1) state.courses[idx] = action.payload;
       })
 
@@ -222,8 +200,7 @@ const courseSlice = createSlice({
       .addCase(enrollInCourse.fulfilled, (state) => {
         state.isLoading = false;
         if (state.currentCourse) {
-          state.currentCourse.enrolledStudents =
-            (state.currentCourse.enrolledStudents || 0) + 1;
+          state.currentCourse.enrolledStudents = (state.currentCourse.enrolledStudents || 0) + 1;
         }
       })
 

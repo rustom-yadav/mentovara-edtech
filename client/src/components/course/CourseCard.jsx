@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Users, BookOpen } from "lucide-react";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Users, BookOpen } from 'lucide-react';
 
 export default function CourseCard({ course, index = 0 }) {
   const {
@@ -35,7 +35,7 @@ export default function CourseCard({ course, index = 0 }) {
           )}
           {/* Price badge */}
           <div className="absolute top-3 right-3 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
-            {price > 0 ? `₹${price}` : "Free"}
+            {price > 0 ? `₹${price}` : 'Free'}
           </div>
         </div>
 
@@ -44,9 +44,7 @@ export default function CourseCard({ course, index = 0 }) {
           <h3 className="line-clamp-1 text-base font-semibold group-hover:text-primary transition-colors">
             {title}
           </h3>
-          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-            {description}
-          </p>
+          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{description}</p>
 
           {/* Instructor + Stats */}
           <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
@@ -57,14 +55,14 @@ export default function CourseCard({ course, index = 0 }) {
                   alt={instructor.fullName}
                   width={20}
                   height={20}
-                  style={{ height: "auto" }}
+                  style={{ height: 'auto' }}
                   className="rounded-full"
                 />
               ) : (
                 <div className="size-5 rounded-full bg-primary/10" />
               )}
               <span className="max-w-[120px] truncate font-medium">
-                {instructor?.fullName || "Instructor"}
+                {instructor?.fullName || 'Instructor'}
               </span>
             </div>
             <div className="flex items-center gap-1">

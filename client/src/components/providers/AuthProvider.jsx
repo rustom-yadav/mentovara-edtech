@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
+import { useAuth } from '@/hooks/useAuth';
 
-const PROTECTED_PREFIXES = ["/dashboard", "/watch"];
+const PROTECTED_PREFIXES = ['/dashboard', '/watch'];
 
 function isProtectedPath(pathname) {
   if (!pathname) return false;
@@ -38,8 +38,8 @@ function AuthProviderContent({ children }) {
   // Redirect to dashboard if logged in and on login/register page
   useEffect(() => {
     if (!isAuthenticated || loading) return;
-    if (pathname === "/auth/login" || pathname === "/auth/register") {
-      const from = searchParams.get("from") || "/dashboard";
+    if (pathname === '/auth/login' || pathname === '/auth/register') {
+      const from = searchParams.get('from') || '/dashboard';
       router.replace(from);
     }
   }, [isAuthenticated, loading, pathname, router, searchParams]);

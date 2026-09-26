@@ -1,22 +1,21 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, X, LogOut, LayoutDashboard, BookOpen, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import ThemeToggle from "@/components/common/ThemeToggle";
-import { useAuth } from "@/hooks/useAuth";
-import { getInitials } from "@/utilities";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { Menu, X, LogOut, LayoutDashboard, BookOpen, Home } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
+import ThemeToggle from '@/components/common/ThemeToggle';
+import { useAuth } from '@/hooks/useAuth';
+import { getInitials } from '@/utilities';
 
 const PUBLIC_LINKS = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/courses", label: "Courses", icon: BookOpen },
+  { href: '/', label: 'Home', icon: Home },
+  { href: '/courses', label: 'Courses', icon: BookOpen },
 ];
-
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -31,7 +30,7 @@ export default function Navbar() {
   }
 
   // Show a minimal navbar on auth pages
-  if (pathname?.startsWith("/auth")) {
+  if (pathname?.startsWith('/auth')) {
     return (
       <header className="glass-nav sticky top-0 z-50">
         <nav className="section-container flex h-16 items-center justify-between">
@@ -44,9 +43,7 @@ export default function Navbar() {
               priority
               className="rounded-lg"
             />
-            <span className="text-lg font-bold tracking-tight gradient-text">
-              Mentovara
-            </span>
+            <span className="text-lg font-bold tracking-tight gradient-text">Mentovara</span>
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/">
@@ -79,19 +76,14 @@ export default function Navbar() {
             priority
             className="rounded-lg"
           />
-          <span className="text-lg font-bold tracking-tight gradient-text">
-            Mentovara
-          </span>
+          <span className="text-lg font-bold tracking-tight gradient-text">Mentovara</span>
         </Link>
 
         {/* Desktop nav links */}
         <div className="hidden items-center gap-1 md:flex">
           {PUBLIC_LINKS.map((link) => (
             <Link key={link.href} href={link.href}>
-              <Button
-                variant={pathname === link.href ? "secondary" : "ghost"}
-                size="sm"
-              >
+              <Button variant={pathname === link.href ? 'secondary' : 'ghost'} size="sm">
                 <link.icon className="size-4" data-icon="inline-start" />
                 {link.label}
               </Button>
@@ -107,10 +99,7 @@ export default function Navbar() {
             <>
               <Link href="/dashboard">
                 <Button variant="ghost" size="sm">
-                  <LayoutDashboard
-                    className="size-4"
-                    data-icon="inline-start"
-                  />
+                  <LayoutDashboard className="size-4" data-icon="inline-start" />
                   Dashboard
                 </Button>
               </Link>
@@ -124,16 +113,10 @@ export default function Navbar() {
                     {getInitials(user?.fullName)}
                   </AvatarFallback>
                 </Avatar>
-                <span className="max-w-[120px] truncate text-sm font-medium">
-                  {user?.fullName}
-                </span>
+                <span className="max-w-[120px] truncate text-sm font-medium">{user?.fullName}</span>
               </div>
 
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                onClick={() => setShowLogoutConfirm(true)}
-              >
+              <Button variant="ghost" size="icon-sm" onClick={() => setShowLogoutConfirm(true)}>
                 <LogOut className="size-4" />
               </Button>
             </>
@@ -168,13 +151,9 @@ export default function Navbar() {
         <div className="border-t border-border bg-background px-4 pb-4 pt-2 md:hidden">
           <div className="flex flex-col gap-1">
             {PUBLIC_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-              >
+              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
                 <Button
-                  variant={pathname === link.href ? "secondary" : "ghost"}
+                  variant={pathname === link.href ? 'secondary' : 'ghost'}
                   className="w-full justify-start"
                   size="sm"
                 >
@@ -198,25 +177,14 @@ export default function Navbar() {
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium">
-                      {user?.fullName}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {user?.email}
-                    </span>
+                    <span className="text-sm font-medium">{user?.fullName}</span>
+                    <span className="text-xs text-muted-foreground">{user?.email}</span>
                   </div>
                 </div>
 
                 <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start"
-                    size="sm"
-                  >
-                    <LayoutDashboard
-                      className="size-4"
-                      data-icon="inline-start"
-                    />
+                  <Button variant="ghost" className="w-full justify-start" size="sm">
+                    <LayoutDashboard className="size-4" data-icon="inline-start" />
                     Dashboard
                   </Button>
                 </Link>
@@ -238,10 +206,7 @@ export default function Navbar() {
                     Log in
                   </Button>
                 </Link>
-                <Link
-                  href="/auth/register"
-                  onClick={() => setMobileOpen(false)}
-                >
+                <Link href="/auth/register" onClick={() => setMobileOpen(false)}>
                   <Button className="w-full" size="sm">
                     Get Started
                   </Button>
@@ -277,11 +242,7 @@ export default function Navbar() {
               >
                 Cancel
               </Button>
-              <Button
-                variant="destructive"
-                className="flex-1"
-                onClick={confirmLogout}
-              >
+              <Button variant="destructive" className="flex-1" onClick={confirmLogout}>
                 Log out
               </Button>
             </div>

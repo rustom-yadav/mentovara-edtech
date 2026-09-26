@@ -1,17 +1,15 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCourses } from "@/store/slices/courseSlice";
+import { useEffect, useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCourses } from '@/store/slices/courseSlice';
 
 export function useCourses() {
   const dispatch = useDispatch();
-  const { courses, pagination, isLoading, error } = useSelector(
-    (s) => s.course,
-  );
+  const { courses, pagination, isLoading, error } = useSelector((s) => s.course);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
 
   // Debounce search input by 400ms
   useEffect(() => {

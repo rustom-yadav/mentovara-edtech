@@ -17,13 +17,14 @@ graph TD
 ```
 
 ### 🧱 Layer Breakdown
-| Layer | Description | Rules |
-| :--- | :--- | :--- |
-| **Presentation** | `src/app` & `src/components` | No calculations. Use props and hooks only. |
-| **Orchestration** | `src/hooks` | Manage React state, effects, and API orchestration. |
-| **Pure Logic** | `src/utilities` | Pure JS functions for math, validation, and parsing. |
-| **Data Access** | `src/services` | Axios configuration, interceptors, and endpoint mapping. |
-| **Global State** | `src/store` | Redux Toolkit slices for cross-component data. |
+
+| Layer             | Description                  | Rules                                                    |
+| :---------------- | :--------------------------- | :------------------------------------------------------- |
+| **Presentation**  | `src/app` & `src/components` | No calculations. Use props and hooks only.               |
+| **Orchestration** | `src/hooks`                  | Manage React state, effects, and API orchestration.      |
+| **Pure Logic**    | `src/utilities`              | Pure JS functions for math, validation, and parsing.     |
+| **Data Access**   | `src/services`               | Axios configuration, interceptors, and endpoint mapping. |
+| **Global State**  | `src/store`                  | Redux Toolkit slices for cross-component data.           |
 
 ---
 
@@ -66,17 +67,21 @@ client/
 ## ⚙️ Development Standard Operating Procedures (SOP)
 
 ### 1. Adding New Logic
+
 **NEVER** write logic inside components.
+
 1. Create a pure function in `src/utilities/<module>.js`.
 2. Export it via `src/utilities/index.js`.
 3. Consume it inside a hook or component.
 
 ### 2. API Communication
+
 1. Define the endpoint string in `src/services/endpoints.js`.
 2. Use the `api` instance from `src/services/api.js`.
 3. Wrap the call in a custom hook inside `src/hooks/`.
 
 ### 3. State Updates
+
 - For UI-only state: Use `useState` within a custom hook.
 - For Global state (User/Enrollments): Use `dispatch` to `authSlice` or `courseSlice`.
 
@@ -90,4 +95,5 @@ client/
 4. **Audit**: `npm run lint`
 
 ---
+
 **License**: MIT | **Author**: Rustom Yadav

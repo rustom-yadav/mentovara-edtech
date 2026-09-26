@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Upload, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { Upload, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 /**
  * Inline form for uploading a video to a specific section.
  * Used inside ManageCoursePage for each section.
  */
 export default function VideoUploadForm({ sectionId, isUploading, onUpload }) {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [file, setFile] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
     await onUpload(sectionId, { title, video: file });
-    setTitle("");
+    setTitle('');
     setFile(null);
   }
 
@@ -32,7 +32,7 @@ export default function VideoUploadForm({ sectionId, isUploading, onUpload }) {
       </div>
       <label className="flex h-8 cursor-pointer items-center gap-1.5 rounded-lg border border-dashed border-border px-3 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
         <Upload className="size-3" />
-        {file ? file.name.slice(0, 20) : "Choose file"}
+        {file ? file.name.slice(0, 20) : 'Choose file'}
         <input
           type="file"
           accept="video/*"

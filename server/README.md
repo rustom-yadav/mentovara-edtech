@@ -43,43 +43,48 @@ server/
 Server properly function karne ke liye niche diye gaye environment variables mandatory hain. Inhe grouped kar diya gaya hai for better clarity:
 
 ### 1. 🌐 Core Server & Database
-| Parameter | Description | Default / Hint |
-| :--- | :--- | :--- |
-| `PORT` | Local server port | `8000` |
-| `NODE_ENV` | Environment mode | `development` or `production` |
-| `MONGO_URI` | MongoDB connection string | `mongodb+srv://...` (Atlas) or Local instance |
-| `CORS_ORIGIN` | Frontend URL for security | `http://localhost:3000` or production URL |
+
+| Parameter     | Description               | Default / Hint                                |
+| :------------ | :------------------------ | :-------------------------------------------- |
+| `PORT`        | Local server port         | `8000`                                        |
+| `NODE_ENV`    | Environment mode          | `development` or `production`                 |
+| `MONGO_URI`   | MongoDB connection string | `mongodb+srv://...` (Atlas) or Local instance |
+| `CORS_ORIGIN` | Frontend URL for security | `http://localhost:3000` or production URL     |
 
 ### 2. 🔑 Authentication (JWT)
-| Parameter | Description | Hint |
-| :--- | :--- | :--- |
-| `ACCESS_TOKEN_SECRET` | Secret for short-lived tokens | Use a 64-character random string |
-| `ACCESS_TOKEN_EXPIRY` | Validity of Access Token | `1d` |
-| `REFRESH_TOKEN_SECRET`| Secret for long-lived tokens | Use a separate strong random string |
-| `REFRESH_TOKEN_EXPIRY`| Validity of Refresh Token | `10d` |
+
+| Parameter              | Description                   | Hint                                |
+| :--------------------- | :---------------------------- | :---------------------------------- |
+| `ACCESS_TOKEN_SECRET`  | Secret for short-lived tokens | Use a 64-character random string    |
+| `ACCESS_TOKEN_EXPIRY`  | Validity of Access Token      | `1d`                                |
+| `REFRESH_TOKEN_SECRET` | Secret for long-lived tokens  | Use a separate strong random string |
+| `REFRESH_TOKEN_EXPIRY` | Validity of Refresh Token     | `10d`                               |
 
 ### 3. ☁️ Media Management (Cloudinary)
-| Parameter | Description | Source |
-| :--- | :--- | :--- |
-| `CLOUDINARY_CLOUD_NAME`| Cloud name from console | Cloudinary Dashboard |
-| `CLOUDINARY_API_KEY` | Your API Key | Cloudinary Dashboard |
-| `CLOUDINARY_API_SECRET`| Your API Secret | **Keep this private!** |
+
+| Parameter               | Description             | Source                 |
+| :---------------------- | :---------------------- | :--------------------- |
+| `CLOUDINARY_CLOUD_NAME` | Cloud name from console | Cloudinary Dashboard   |
+| `CLOUDINARY_API_KEY`    | Your API Key            | Cloudinary Dashboard   |
+| `CLOUDINARY_API_SECRET` | Your API Secret         | **Keep this private!** |
 
 ### 4. 📧 Email Service (Nodemailer)
-| Parameter | Description | Source |
-| :--- | :--- | :--- |
-| `SMTP_HOST` | SMTP server address | `smtp.gmail.com` |
-| `SMTP_PORT` | SMTP server port | `587` |
-| `SMTP_USER` | Email used for sending | Your Gmail Address |
-| `SMTP_PASS` | Gmail App Password | [Google App Passwords](https://myaccount.google.com/apppasswords) |
-| `FROM_NAME` | Display name of sender | `Mentovara Support` |
+
+| Parameter   | Description            | Source                                                            |
+| :---------- | :--------------------- | :---------------------------------------------------------------- |
+| `SMTP_HOST` | SMTP server address    | `smtp.gmail.com`                                                  |
+| `SMTP_PORT` | SMTP server port       | `587`                                                             |
+| `SMTP_USER` | Email used for sending | Your Gmail Address                                                |
+| `SMTP_PASS` | Gmail App Password     | [Google App Passwords](https://myaccount.google.com/apppasswords) |
+| `FROM_NAME` | Display name of sender | `Mentovara Support`                                               |
 
 ### 5. 💳 Payments (Razorpay)
-| Parameter | Description | Source |
-| :--- | :--- | :--- |
-| `RAZORPAY_KEY_ID` | API Key ID | Razorpay Settings -> API Keys |
-| `RAZORPAY_KEY_SECRET` | API Key Secret | Razorpay Settings -> API Keys |
-| `RAZORPAY_WEBHOOK_SECRET`| Secret for verifying hooks | Razorpay Webhook Settings |
+
+| Parameter                 | Description                | Source                        |
+| :------------------------ | :------------------------- | :---------------------------- |
+| `RAZORPAY_KEY_ID`         | API Key ID                 | Razorpay Settings -> API Keys |
+| `RAZORPAY_KEY_SECRET`     | API Key Secret             | Razorpay Settings -> API Keys |
+| `RAZORPAY_WEBHOOK_SECRET` | Secret for verifying hooks | Razorpay Webhook Settings     |
 
 > [!CAUTION]
 > **Security Warning**: Kabhi bhi `.env` file ko GitHub par push na karein. Ise humesha `.gitignore` mein rakhein.
@@ -89,18 +94,23 @@ Server properly function karne ke liye niche diye gaye environment variables man
 ## 🚀 Advanced Engineering Features
 
 ### 1. Atomic Course Enrollment
+
 Safe enrollment flow using **Razorpay Order-Verification** logic. Courses are unlocked only after a cryptographically verified payment signature is received.
 
 ### 2. Intelligent Video Processing
+
 Automated video handling via **Cloudinary API**, including thumbnail generation and SEO-friendly metadata storage.
 
 ### 3. Direct-to-Backend Sizing
+
 Configured with `http.createServer` and custom `rawBody` capture to support large video uploads and secure webhook verification on serverless-platforms like Render.
 
 ### 4. Global Error Resilience
+
 Centralized `ApiError` class and `errorHandler` middleware ensure that the client always receives descriptive, structured error responses instead of raw stack traces. The `asyncHandler` pattern prevents double try-catch silent failures.
 
 ### 5. Enterprise-Grade Security
+
 - **Cryptographically Secure OTPs:** Generated via Node's `crypto` module.
 - **Strict Ownership Validation:** Instructors can only modify or delete content (videos/sections) within their explicitly owned courses, preventing unauthorized data manipulation.
 
@@ -109,11 +119,12 @@ Centralized `ApiError` class and `errorHandler` middleware ensure that the clien
 ## 🚦 Getting Started
 
 1. **Install Sub-module Dependencies**:
+
    ```bash
    npm install
    ```
 
-2. **Database Initialization**: 
+2. **Database Initialization**:
    Ensure your MongoDB instance is running (Local or Atlas).
 
 3. **Development Mode (Manual)**:
@@ -122,12 +133,16 @@ Centralized `ApiError` class and `errorHandler` middleware ensure that the clien
    ```
 
 ### 🐳 Run with Docker (Recommended)
+
 You can run the entire backend + a local isolated MongoDB instantly:
+
 ```bash
 docker-compose up -d --build
 ```
+
 - The API will be available at `http://localhost:8000`
 - MongoDB will be secured with authentication and mapped to port `27017` internally.
 
 ---
+
 **License**: MIT | **Author**: Rustom Yadav| **Audit Grade**: 100% Purity

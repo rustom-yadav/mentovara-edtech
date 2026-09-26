@@ -1,31 +1,22 @@
-"use client";
+'use client';
 
-import { Camera, Loader2, Mail, User, GraduationCap } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useProfile } from "@/hooks/useProfile";
-import { getInitials } from "@/utilities";
+import { Camera, Loader2, Mail, User, GraduationCap } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useProfile } from '@/hooks/useProfile';
+import { getInitials } from '@/utilities';
 
 export default function ProfilePage() {
-  const {
-    user,
-    fullName,
-    preview,
-    saving,
-    setFullName,
-    handleAvatarChange,
-    handleSave,
-  } = useProfile();
+  const { user, fullName, preview, saving, setFullName, handleAvatarChange, handleSave } =
+    useProfile();
 
   return (
     <div className="section-container max-w-2xl py-10">
       <h1 className="text-2xl font-bold tracking-tight">My Profile</h1>
-      <p className="mt-1 text-muted-foreground">
-        Manage your personal information
-      </p>
+      <p className="mt-1 text-muted-foreground">Manage your personal information</p>
 
       <Separator className="my-6" />
 
@@ -74,20 +65,20 @@ export default function ProfilePage() {
             <Label>Email</Label>
             <div className="relative">
               <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input value={user?.email || ""} disabled className="pl-9" />
+              <Input value={user?.email || ''} disabled className="pl-9" />
             </div>
           </div>
 
           <div className="space-y-2">
             <Label>Username</Label>
-            <Input value={user?.username || ""} disabled />
+            <Input value={user?.username || ''} disabled />
           </div>
 
           <div className="space-y-2">
             <Label>Role</Label>
             <div className="flex h-8 items-center gap-2 rounded-lg border border-input bg-muted/50 px-3 text-sm">
               <GraduationCap className="size-4 text-muted-foreground" />
-              <span className="capitalize">{user?.role || "student"}</span>
+              <span className="capitalize">{user?.role || 'student'}</span>
             </div>
           </div>
         </div>
@@ -100,7 +91,7 @@ export default function ProfilePage() {
               Saving…
             </>
           ) : (
-            "Save Changes"
+            'Save Changes'
           )}
         </Button>
       </form>

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   BookOpen,
   Users,
@@ -12,9 +12,9 @@ import {
   CreditCard,
   IndianRupee,
   Lock,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
 export default function CourseHero({
   course,
@@ -31,7 +31,7 @@ export default function CourseHero({
   isAuthenticated,
 }) {
   function getEnrollButtonContent() {
-    if (paymentStep === "initiating") {
+    if (paymentStep === 'initiating') {
       return (
         <>
           <Loader2 className="size-4 animate-spin" />
@@ -39,7 +39,7 @@ export default function CourseHero({
         </>
       );
     }
-    if (paymentStep === "paying") {
+    if (paymentStep === 'paying') {
       return (
         <>
           <CreditCard className="size-4 animate-pulse" />
@@ -47,7 +47,7 @@ export default function CourseHero({
         </>
       );
     }
-    if (paymentStep === "verifying") {
+    if (paymentStep === 'verifying') {
       return (
         <>
           <ShieldCheck className="size-4 animate-pulse" />
@@ -55,7 +55,7 @@ export default function CourseHero({
         </>
       );
     }
-    if (paymentStep === "success") {
+    if (paymentStep === 'success') {
       return (
         <>
           <CheckCircle2 className="size-4" />
@@ -74,7 +74,7 @@ export default function CourseHero({
         </>
       );
     }
-    return "Enroll to watch all videos (Free)";
+    return 'Enroll to watch all videos (Free)';
   }
 
   return (
@@ -88,9 +88,7 @@ export default function CourseHero({
                 Courses
               </Link>
               <ChevronRight className="size-3.5" />
-              <span className="truncate font-medium text-foreground">
-                {course.title}
-              </span>
+              <span className="truncate font-medium text-foreground">{course.title}</span>
             </div>
 
             <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
@@ -116,7 +114,7 @@ export default function CourseHero({
                   <div className="size-6 rounded-full bg-primary/10" />
                 )}
                 <span className="font-medium text-foreground">
-                  {course.instructor?.fullName || "Instructor"}
+                  {course.instructor?.fullName || 'Instructor'}
                 </span>
               </div>
               <Separator orientation="vertical" className="!h-4" />
@@ -144,12 +142,8 @@ export default function CourseHero({
             {!isOwner && !isEnrolled && isPaid && (
               <div className="mt-6 inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5">
                 <IndianRupee className="size-5 text-primary" />
-                <span className="text-2xl font-bold text-primary">
-                  {course.price}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  one-time payment
-                </span>
+                <span className="text-2xl font-bold text-primary">{course.price}</span>
+                <span className="text-sm text-muted-foreground">one-time payment</span>
               </div>
             )}
 
@@ -167,16 +161,14 @@ export default function CourseHero({
                   disabled={!continueVideo}
                 >
                   <PlayCircle className="size-4" data-icon="inline-start" />
-                  {continueVideo ? "Continue Learning" : "No videos yet"}
+                  {continueVideo ? 'Continue Learning' : 'No videos yet'}
                 </Button>
               ) : (
                 <Button
                   id="enroll-btn"
                   size="lg"
                   className={`gap-2 transition-all duration-300 ${
-                    paymentStep === "success"
-                      ? "bg-green-600 hover:bg-green-600 text-white"
-                      : ""
+                    paymentStep === 'success' ? 'bg-green-600 hover:bg-green-600 text-white' : ''
                   }`}
                   onClick={handlePrimaryAction}
                   disabled={enrolling}
@@ -187,8 +179,8 @@ export default function CourseHero({
               {!isOwner && !isEnrolled && (
                 <p className="text-sm text-muted-foreground">
                   {isPaid
-                    ? "Secure payment via Razorpay. Unlock all course videos, progress tracking, and watch page access."
-                    : "Click the button above to enroll and unlock all course videos, progress tracking, and watch page access."}
+                    ? 'Secure payment via Razorpay. Unlock all course videos, progress tracking, and watch page access.'
+                    : 'Click the button above to enroll and unlock all course videos, progress tracking, and watch page access.'}
                 </p>
               )}
               {isEnrolled && (

@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useSelector, useDispatch } from "react-redux";
-import { useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import api from "@/services/api";
-import { ENDPOINTS } from "@/services/endpoints";
-import { buildVerifyUrl } from "@/utilities";
+import { useSelector, useDispatch } from 'react-redux';
+import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import api from '@/services/api';
+import { ENDPOINTS } from '@/services/endpoints';
+import { buildVerifyUrl } from '@/utilities';
 import {
   login as loginAction,
   logout as logoutAction,
   setUser,
   setAccessToken,
   setLoading,
-} from "@/store/slices/authSlice";
+} from '@/store/slices/authSlice';
 
 export function useAuth() {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export function useAuth() {
         // Check if server returned 403 (email not verified)
         if (res.data?.data?.isEmailVerified === false) {
           const userEmail = res.data.data.email;
-          toast.error("Please verify your email first.");
+          toast.error('Please verify your email first.');
           const verifyUrl = buildVerifyUrl(userEmail, redirectTo);
           router.push(verifyUrl);
           return { success: false, message: res.data?.message };
@@ -59,23 +59,23 @@ export function useAuth() {
         const userData = res.data?.data?.user;
         const token = res.data?.data?.accessToken;
         dispatch(loginAction({ user: userData, accessToken: token }));
-        toast.success("Logged in successfully!");
-        
-        if (redirectTo && typeof redirectTo === "string") {
+        toast.success('Logged in successfully!');
+
+        if (redirectTo && typeof redirectTo === 'string') {
           router.push(redirectTo);
         } else {
-          router.push("/dashboard");
+          router.push('/dashboard');
         }
         return { success: true };
       } catch (err) {
         const status = err?.response?.status;
         const data = err?.response?.data;
-        const msg = data?.message || "Login failed. Please try again.";
+        const msg = data?.message || 'Login failed. Please try again.';
 
         // Also handle 403 from error responses (email not verified)
         if (status === 403 && data?.data?.isEmailVerified === false) {
           const userEmail = data.data.email;
-          toast.error("Please verify your email first.");
+          toast.error('Please verify your email first.');
           const verifyUrl = buildVerifyUrl(userEmail, redirectTo);
           router.push(verifyUrl);
           return { success: false, message: msg };
@@ -87,7 +87,7 @@ export function useAuth() {
         dispatch(setLoading(false));
       }
     },
-    [dispatch, router]
+    [dispatch, router],
   );
 
   // Handle registration and then redirect to the login page.
@@ -100,30 +100,25 @@ export function useAuth() {
 
         // Step 1: Register the user
         await api.post(ENDPOINTS.REGISTER, formData, {
-          headers:
-            formData instanceof FormData
-              ? { "Content-Type": "multipart/form-data" }
-              : {},
+          headers: formData instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {},
         });
 
-        toast.success("Account created successfully! Please verify your email.");
-        
-        const userEmail = formData instanceof FormData ? formData.get("email") : formData.email;
+        toast.success('Account created successfully! Please verify your email.');
+
+        const userEmail = formData instanceof FormData ? formData.get('email') : formData.email;
         const verifyUrl = buildVerifyUrl(userEmail, redirectTo);
         router.push(verifyUrl);
 
         return { success: true };
       } catch (err) {
-        const msg =
-          err?.response?.data?.message ||
-          "Registration failed. Please try again.";
+        const msg = err?.response?.data?.message || 'Registration failed. Please try again.';
         toast.error(msg);
         return { success: false, message: msg };
       } finally {
         dispatch(setLoading(false));
       }
     },
-    [dispatch, router]
+    [dispatch, router],
   );
 
   // Logout — backend clears accessToken + refreshToken cookies
@@ -134,35 +129,38 @@ export function useAuth() {
       // clear client state regardless
     } finally {
       dispatch(logoutAction());
-      toast.success("Logged out");
-      router.push("/");
+      toast.success('Logged out');
+      router.push('/');
     }
   }, [dispatch, router]);
 
   // Verify email using OTP
-  const handleVerifyEmail = useCallback(async (email, otp) => {
-    try {
-      dispatch(setLoading(true));
-      await api.post(ENDPOINTS.VERIFY_EMAIL, { email, otp });
-      toast.success("Email verified successfully! Please log in.");
-      return { success: true };
-    } catch (err) {
-      const msg = err?.response?.data?.message || "Verification failed. Please try again.";
-      toast.error(msg);
-      return { success: false, message: msg };
-    } finally {
-      dispatch(setLoading(false));
-    }
-  }, [dispatch]);
+  const handleVerifyEmail = useCallback(
+    async (email, otp) => {
+      try {
+        dispatch(setLoading(true));
+        await api.post(ENDPOINTS.VERIFY_EMAIL, { email, otp });
+        toast.success('Email verified successfully! Please log in.');
+        return { success: true };
+      } catch (err) {
+        const msg = err?.response?.data?.message || 'Verification failed. Please try again.';
+        toast.error(msg);
+        return { success: false, message: msg };
+      } finally {
+        dispatch(setLoading(false));
+      }
+    },
+    [dispatch],
+  );
 
   // Resend verification email
   const handleResendVerification = useCallback(async (email) => {
     try {
       await api.post(ENDPOINTS.RESEND_VERIFICATION, { email });
-      toast.success("Verification email sent!");
+      toast.success('Verification email sent!');
       return { success: true };
     } catch (err) {
-      const msg = err?.response?.data?.message || "Failed to resend email.";
+      const msg = err?.response?.data?.message || 'Failed to resend email.';
       toast.error(msg);
       return { success: false, message: msg };
     }
@@ -184,8 +182,8 @@ export function useAuth() {
     accessToken,
     isAuthenticated,
     loading,
-    isInstructor: user?.role === "instructor",
-    isStudent: user?.role === "student",
+    isInstructor: user?.role === 'instructor',
+    isStudent: user?.role === 'student',
     checkAuth,
     handleLogin,
     handleRegister,

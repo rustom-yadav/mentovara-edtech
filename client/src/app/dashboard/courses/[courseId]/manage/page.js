@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useParams } from "next/navigation";
-import Link from "next/link";
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import {
   Plus,
   Trash2,
@@ -11,13 +11,13 @@ import {
   BookOpen,
   ChevronLeft,
   GripVertical,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { useManageCourse } from "@/hooks/useManageCourse";
-import VideoUploadForm from "@/components/course/VideoUploadForm";
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
+import { useManageCourse } from '@/hooks/useManageCourse';
+import VideoUploadForm from '@/components/course/VideoUploadForm';
 
 export default function ManageCoursePage() {
   const { courseId } = useParams();
@@ -70,9 +70,7 @@ export default function ManageCoursePage() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{course.title}</h1>
-          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
-            {course.description}
-          </p>
+          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{course.description}</p>
         </div>
         <Link href={`/courses/${courseId}`}>
           <Button variant="outline" size="sm">
@@ -113,10 +111,7 @@ export default function ManageCoursePage() {
           </div>
         ) : (
           sections.map((section, sIdx) => (
-            <div
-              key={section._id}
-              className="rounded-xl border border-border bg-card"
-            >
+            <div key={section._id} className="rounded-xl border border-border bg-card">
               {/* Section Header */}
               <div className="flex items-center justify-between px-4 py-3">
                 <div className="flex items-center gap-2">
@@ -143,16 +138,11 @@ export default function ManageCoursePage() {
               {/* Videos */}
               <div className="divide-y divide-border">
                 {section.videos?.map((video) => (
-                  <div
-                    key={video._id}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm"
-                  >
+                  <div key={video._id} className="flex items-center gap-3 px-4 py-2.5 text-sm">
                     <PlayCircle className="size-4 shrink-0 text-muted-foreground" />
                     <span className="flex-1 truncate">{video.title}</span>
                     <span className="text-xs text-muted-foreground">
-                      {video.duration
-                        ? `${Math.floor(video.duration / 60)}m`
-                        : "—"}
+                      {video.duration ? `${Math.floor(video.duration / 60)}m` : '—'}
                     </span>
                     <Button
                       variant="ghost"

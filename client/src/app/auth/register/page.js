@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Eye, EyeOff, Loader2, Camera } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useRegisterForm } from "@/hooks/useRegisterForm";
+import { Suspense } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Eye, EyeOff, Loader2, Camera } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useRegisterForm } from '@/hooks/useRegisterForm';
 
 function RegisterForm() {
   const {
@@ -47,9 +47,7 @@ function RegisterForm() {
             />
             <span className="text-xl font-bold gradient-text">Mentovara</span>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight">
-            Create your account
-          </h1>
+          <h1 className="text-2xl font-bold tracking-tight">Create your account</h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
             Start learning or teaching — it&apos;s free to join
           </p>
@@ -72,12 +70,7 @@ function RegisterForm() {
                 onClick={() => fileInputRef.current?.click()}
               >
                 {avatarPreview ? (
-                  <Image
-                    src={avatarPreview}
-                    alt="Avatar preview"
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={avatarPreview} alt="Avatar preview" fill className="object-cover" />
                 ) : (
                   <Camera className="size-6 text-muted-foreground group-hover:text-primary transition-colors" />
                 )}
@@ -159,7 +152,7 @@ function RegisterForm() {
                 <Input
                   id="password"
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="Min. 8 characters"
                   value={form.password}
                   onChange={onChange}
@@ -172,11 +165,7 @@ function RegisterForm() {
                   onClick={togglePassword}
                   tabIndex={-1}
                 >
-                  {showPassword ? (
-                    <EyeOff className="size-4" />
-                  ) : (
-                    <Eye className="size-4" />
-                  )}
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                 </button>
               </div>
             </div>
@@ -187,11 +176,11 @@ function RegisterForm() {
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
-                  onClick={() => setRole("student")}
+                  onClick={() => setRole('student')}
                   className={`rounded-xl border px-4 py-3 text-center text-sm font-medium transition-all ${
-                    form.role === "student"
-                      ? "border-primary bg-primary/10 text-primary"
-                      : "border-border bg-background text-muted-foreground hover:border-primary/40"
+                    form.role === 'student'
+                      ? 'border-primary bg-primary/10 text-primary'
+                      : 'border-border bg-background text-muted-foreground hover:border-primary/40'
                   }`}
                 >
                   <span className="block text-lg mb-0.5">🎓</span>
@@ -199,11 +188,11 @@ function RegisterForm() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setRole("instructor")}
+                  onClick={() => setRole('instructor')}
                   className={`rounded-xl border px-4 py-3 text-center text-sm font-medium transition-all ${
-                    form.role === "instructor"
-                      ? "border-primary bg-primary/10 text-primary"
-                      : "border-border bg-background text-muted-foreground hover:border-primary/40"
+                    form.role === 'instructor'
+                      ? 'border-primary bg-primary/10 text-primary'
+                      : 'border-border bg-background text-muted-foreground hover:border-primary/40'
                   }`}
                 >
                   <span className="block text-lg mb-0.5">🧑‍🏫</span>
@@ -220,22 +209,14 @@ function RegisterForm() {
             )}
 
             {/* Submit */}
-            <Button
-              type="submit"
-              className="w-full"
-              size="lg"
-              disabled={loading}
-            >
+            <Button type="submit" className="w-full" size="lg" disabled={loading}>
               {loading ? (
                 <>
-                  <Loader2
-                    className="size-4 animate-spin"
-                    data-icon="inline-start"
-                  />
+                  <Loader2 className="size-4 animate-spin" data-icon="inline-start" />
                   Creating account…
                 </>
               ) : (
-                "Create account"
+                'Create account'
               )}
             </Button>
           </form>
@@ -243,9 +224,9 @@ function RegisterForm() {
 
         {/* Footer */}
         <p className="text-center text-sm text-muted-foreground">
-          Already have an account?{" "}
+          Already have an account?{' '}
           <Link
-            href={`/auth/login${from ? `?from=${from}` : ""}`}
+            href={`/auth/login${from ? `?from=${from}` : ''}`}
             className="font-medium text-primary hover:underline"
           >
             Log in

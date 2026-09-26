@@ -4,9 +4,9 @@
  * @param {string} from - Optional redirect path after verification
  */
 export function buildVerifyUrl(email, from) {
-  if (!email) return "/auth/login";
+  if (!email) return '/auth/login';
   let url = `/auth/verify-email?email=${encodeURIComponent(email)}`;
-  if (from && typeof from === "string") {
+  if (from && typeof from === 'string') {
     url += `&from=${encodeURIComponent(from)}`;
   }
   return url;

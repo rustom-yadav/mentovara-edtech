@@ -1,48 +1,41 @@
-import {
-  Monitor,
-  BarChart3,
-  BookOpen,
-  Users,
-  Play,
-  GraduationCap,
-} from "lucide-react";
+import { Monitor, BarChart3, BookOpen, Users, Play, GraduationCap } from 'lucide-react';
 
 const FEATURES = [
   {
     icon: Monitor,
-    title: "Learn at Your Own Pace",
+    title: 'Learn at Your Own Pace',
     description:
-      "No deadlines, no pressure. Watch lectures whenever it suits you and pick up right where you left off.",
+      'No deadlines, no pressure. Watch lectures whenever it suits you and pick up right where you left off.',
   },
   {
     icon: BarChart3,
-    title: "See Your Growth",
+    title: 'See Your Growth',
     description:
-      "A visual progress bar tracks every lecture you complete — stay motivated and never lose your place.",
+      'A visual progress bar tracks every lecture you complete — stay motivated and never lose your place.',
   },
   {
     icon: BookOpen,
-    title: "Well-Structured Curriculum",
+    title: 'Well-Structured Curriculum',
     description:
-      "Every course is organized into clear sections and lectures, making complex topics easy to follow.",
+      'Every course is organized into clear sections and lectures, making complex topics easy to follow.',
   },
   {
     icon: Users,
-    title: "Learn from Real Instructors",
+    title: 'Learn from Real Instructors',
     description:
-      "Courses are created by instructors who manage their own content — not scraped or auto-generated.",
+      'Courses are created by instructors who manage their own content — not scraped or auto-generated.',
   },
   {
     icon: Play,
-    title: "Stream Anywhere",
+    title: 'Stream Anywhere',
     description:
-      "High-quality video streaming that works on any device — desktop, tablet, or mobile.",
+      'High-quality video streaming that works on any device — desktop, tablet, or mobile.',
   },
   {
     icon: GraduationCap,
-    title: "Student & Instructor Roles",
+    title: 'Student & Instructor Roles',
     description:
-      "Join as a student to learn, or switch to instructor to share your knowledge with the world.",
+      'Join as a student to learn, or switch to instructor to share your knowledge with the world.',
   },
 ];
 
@@ -52,12 +45,11 @@ export default function Features() {
       <div className="section-container">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything you need to{" "}
-            <span className="gradient-text">learn & grow</span>
+            Everything you need to <span className="gradient-text">learn & grow</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Built for students who want to learn efficiently and instructors who
-            want to teach effectively.
+            Built for students who want to learn efficiently and instructors who want to teach
+            effectively.
           </p>
         </div>
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

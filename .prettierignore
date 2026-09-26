@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js & Build Outputs
+.next/
+out/
+build/
+dist/
+.vercel/
+next-env.d.ts
+
+# Lockfiles & Generated
+pnpm-lock.yaml
+package-lock.json
+*.log
+logs/
+
+# Env & Secrets
+.env*
+*.pem
+
+# Server Uploads
+server/public/temp/
+
+# Misc
+.git/
+.agents/

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useParams, useRouter } from "next/navigation";
-import { BookOpen, Loader2 } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useParams, useRouter } from 'next/navigation';
+import { BookOpen, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
-import { useCourseDetail } from "@/hooks/useCourseDetail";
-import CourseHero from "@/components/course/CourseHero";
-import CurriculumList from "@/components/course/CurriculumList";
+import { useCourseDetail } from '@/hooks/useCourseDetail';
+import CourseHero from '@/components/course/CourseHero';
+import CurriculumList from '@/components/course/CurriculumList';
 
 export default function CourseDetailPage() {
   const { courseId } = useParams();

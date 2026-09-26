@@ -1,28 +1,21 @@
-"use client";
+'use client';
 
-import { Loader2, Upload } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useCreateCourse } from "@/hooks/useCreateCourse";
+import { Loader2, Upload } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useCreateCourse } from '@/hooks/useCreateCourse';
 
 export default function CreateCoursePage() {
-  const {
-    form,
-    loading,
-    thumbnail,
-    onChange,
-    onThumbnailChange,
-    onSubmit,
-    handleCancel,
-  } = useCreateCourse();
+  const { form, loading, thumbnail, onChange, onThumbnailChange, onSubmit, handleCancel } =
+    useCreateCourse();
 
   return (
     <div className="section-container max-w-2xl py-10">
       <h1 className="text-2xl font-bold tracking-tight">Create New Course</h1>
       <p className="mt-1 text-muted-foreground">
-        Fill in the details below to create your course. You can add sections
-        and videos after creating it.
+        Fill in the details below to create your course. You can add sections and videos after
+        creating it.
       </p>
 
       <form onSubmit={onSubmit} className="mt-8 space-y-5">
@@ -73,14 +66,9 @@ export default function CreateCoursePage() {
           <label className="flex cursor-pointer flex-col items-center gap-2 rounded-xl border-2 border-dashed border-border p-6 text-center transition-colors hover:border-primary/40 hover:bg-muted/50">
             <Upload className="size-6 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">
-              {thumbnail ? thumbnail.name : "Click to upload thumbnail image"}
+              {thumbnail ? thumbnail.name : 'Click to upload thumbnail image'}
             </span>
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={onThumbnailChange}
-            />
+            <input type="file" accept="image/*" className="hidden" onChange={onThumbnailChange} />
           </label>
         </div>
 
@@ -105,15 +93,10 @@ export default function CreateCoursePage() {
                 Creating…
               </>
             ) : (
-              "Create Course"
+              'Create Course'
             )}
           </Button>
-          <Button
-            type="button"
-            variant="outline"
-            size="lg"
-            onClick={handleCancel}
-          >
+          <Button type="button" variant="outline" size="lg" onClick={handleCancel}>
             Cancel
           </Button>
         </div>

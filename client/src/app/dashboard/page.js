@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 import {
   BookOpen,
   GraduationCap,
@@ -9,8 +9,8 @@ import {
   Settings,
   User,
   ArrowRight,
-} from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+} from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function DashboardPage() {
   const { user, loading, isInstructor } = useAuth();
@@ -32,49 +32,49 @@ export default function DashboardPage() {
 
   const studentLinks = [
     {
-      href: "/dashboard/enrolled",
+      href: '/dashboard/enrolled',
       icon: BookOpen,
-      title: "My Courses",
-      desc: "View your enrolled courses and continue learning",
-      color: "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/40",
+      title: 'My Courses',
+      desc: 'View your enrolled courses and continue learning',
+      color: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/40',
     },
     {
-      href: "/courses",
+      href: '/courses',
       icon: PlayCircle,
-      title: "Browse Courses",
-      desc: "Discover new courses to enroll in",
-      color: "text-violet-600 bg-violet-100 dark:text-violet-400 dark:bg-violet-900/40",
+      title: 'Browse Courses',
+      desc: 'Discover new courses to enroll in',
+      color: 'text-violet-600 bg-violet-100 dark:text-violet-400 dark:bg-violet-900/40',
     },
     {
-      href: "/dashboard/profile",
+      href: '/dashboard/profile',
       icon: User,
-      title: "My Profile",
-      desc: "Update your name, avatar, and details",
-      color: "text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/40",
+      title: 'My Profile',
+      desc: 'Update your name, avatar, and details',
+      color: 'text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/40',
     },
   ];
 
   const instructorLinks = [
     {
-      href: "/dashboard/courses",
+      href: '/dashboard/courses',
       icon: Settings,
-      title: "My Courses",
-      desc: "Manage your courses, sections, and videos",
-      color: "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/40",
+      title: 'My Courses',
+      desc: 'Manage your courses, sections, and videos',
+      color: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/40',
     },
     {
-      href: "/dashboard/courses/new",
+      href: '/dashboard/courses/new',
       icon: PlusCircle,
-      title: "Create Course",
-      desc: "Start building a new course from scratch",
-      color: "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/40",
+      title: 'Create Course',
+      desc: 'Start building a new course from scratch',
+      color: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/40',
     },
     {
-      href: "/dashboard/profile",
+      href: '/dashboard/profile',
       icon: User,
-      title: "My Profile",
-      desc: "Update your name, avatar, and details",
-      color: "text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/40",
+      title: 'My Profile',
+      desc: 'Update your name, avatar, and details',
+      color: 'text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/40',
     },
   ];
 
@@ -85,19 +85,19 @@ export default function DashboardPage() {
       {/* Greeting */}
       <div className="mb-2">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Welcome back, {user?.fullName?.split(" ")[0] || "there"} 👋
+          Welcome back, {user?.fullName?.split(' ')[0] || 'there'} 👋
         </h1>
         <p className="mt-1 text-muted-foreground">
           {isInstructor
-            ? "Manage your courses and track student enrollment."
-            : "Pick up where you left off or explore new courses."}
+            ? 'Manage your courses and track student enrollment.'
+            : 'Pick up where you left off or explore new courses.'}
         </p>
       </div>
 
       {/* Role Badge */}
       <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
         <GraduationCap className="size-4" />
-        {isInstructor ? "Instructor" : "Student"}
+        {isInstructor ? 'Instructor' : 'Student'}
       </div>
 
       {/* Quick Actions Grid */}
@@ -112,9 +112,7 @@ export default function DashboardPage() {
                 <h3 className="font-semibold group-hover:text-primary transition-colors">
                   {link.title}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {link.desc}
-                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{link.desc}</p>
               </div>
               <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
                 Go <ArrowRight className="size-3.5" />
@@ -127,21 +125,15 @@ export default function DashboardPage() {
       {/* Stats */}
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
         <div className="rounded-xl border border-border bg-card p-5 text-center">
-          <p className="text-3xl font-bold gradient-text">
-            {user?.enrolledCourses?.length ?? 0}
-          </p>
+          <p className="text-3xl font-bold gradient-text">{user?.enrolledCourses?.length ?? 0}</p>
           <p className="text-sm text-muted-foreground">Enrolled Courses</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-5 text-center">
-          <p className="text-3xl font-bold gradient-text">
-            {user?.watchHistory?.length ?? 0}
-          </p>
+          <p className="text-3xl font-bold gradient-text">{user?.watchHistory?.length ?? 0}</p>
           <p className="text-sm text-muted-foreground">Videos Watched</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-5 text-center">
-          <p className="text-3xl font-bold gradient-text capitalize">
-            {user?.role || "student"}
-          </p>
+          <p className="text-3xl font-bold gradient-text capitalize">{user?.role || 'student'}</p>
           <p className="text-sm text-muted-foreground">Account Type</p>
         </div>
       </div>
