@@ -1,0 +1,23 @@
+{
+  "name": "mentovara",
+  "version": "1.0.0",
+  "description": "Mentovara EdTech Platform - Monorepo",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=12.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel -r dev",
+    "dev:client": "pnpm --filter client dev",
+    "dev:server": "pnpm --filter server dev",
+    "build": "pnpm --filter client build",
+    "start:client": "pnpm --filter client start",
+    "start:server": "pnpm --filter server start",
+    "lint": "pnpm -r lint",
+    "lint:client": "pnpm --filter client lint",
+    "lint:server": "pnpm --filter server lint"
+  },
+  "packageManager": "pnpm@12.6.0"
+}
