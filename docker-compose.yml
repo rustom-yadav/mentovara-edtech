@@ -26,6 +26,8 @@ services:
       - '3000:3000'
     env_file:
       - client/.env.local
+    environment:
+      - INTERNAL_BACKEND_URL=${INTERNAL_BACKEND_URL}
     networks:
       - mentovara-network
 

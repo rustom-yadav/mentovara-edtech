@@ -21,8 +21,8 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        // Proxy to backend (Render or Localhost) based on env variable
-        destination: `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'}/api/v1/:path*`,
+        // Proxy to backend (Docker internal or Localhost) based on env variable
+        destination: `${process.env.INTERNAL_BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'}/api/v1/:path*`,
       },
     ];
   },
