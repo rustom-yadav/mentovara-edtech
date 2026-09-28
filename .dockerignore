@@ -1,0 +1,47 @@
+# Dependencies
+node_modules
+client/node_modules
+server/node_modules
+
+# Build outputs
+.next
+client/.next
+out
+dist
+build
+
+# Version control
+.git
+.github
+.gitignore
+
+# Environment variables (security risk to bake into image)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Docker
+**/Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# IDEs & Docs
+.vscode
+.idea
+README.md
+LICENSE
+
+# Temp / Local Uploads
+server/public/temp
+
+# OS files
+.DS_Store
+Thumbs.db

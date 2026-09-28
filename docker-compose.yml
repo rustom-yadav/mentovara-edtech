@@ -1,0 +1,35 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: mentovara-server
+    restart: on-failure
+    ports:
+      - '8000:8000'
+    env_file:
+      - server/.env
+    networks:
+      - mentovara-network
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+      args:
+        - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+        - NEXT_PUBLIC_RAZORPAY_KEY_ID=${NEXT_PUBLIC_RAZORPAY_KEY_ID}
+
+    container_name: mentovara-client
+    restart: on-failure
+    ports:
+      - '3000:3000'
+    env_file:
+      - client/.env.local
+    networks:
+      - mentovara-network
+
+networks:
+  mentovara-network:
+    name: mentovara-network
+    driver: bridge

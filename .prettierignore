@@ -26,3 +26,6 @@ server/public/temp/
 # Misc
 .git/
 .agents/
+.vscode/
+.idea/
+coverage/
