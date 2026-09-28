@@ -40,6 +40,10 @@ logs
 .env.production.local
 .env*.local
 
+# IDE / Editor
+.vscode/
+.idea/
+
 # OS Files
 .DS_Store
 Thumbs.db

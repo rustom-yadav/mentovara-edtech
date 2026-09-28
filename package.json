@@ -10,6 +10,9 @@
   },
   "scripts": {
     "dev": "pnpm --parallel -r dev",
+    "dev:mongoDB": "pnpm db:up && pnpm dev",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d",
+    "db:down": "docker compose -f docker-compose.dev.yml down",
     "dev:client": "pnpm --filter client dev",
     "dev:server": "pnpm --filter server dev",
     "build": "pnpm --filter client build",

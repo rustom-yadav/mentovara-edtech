@@ -1,26 +1,54 @@
-# Use Node.js 20 Alpine for a lightweight, secure base image
-FROM node:20-alpine
+# ==========================================
+# 0. BASE STAGE
+# ==========================================
+FROM node:24-alpine AS base
+# Enable pnpm across all stages
+RUN corepack enable pnpm
 
-# Set environment variable for production
-ENV NODE_ENV=production
-
-# Set the working directory inside the container
+# ==========================================
+# 1. DEPENDENCIES STAGE
+# ==========================================
+FROM base AS deps
 WORKDIR /app
 
-# Copy package.json and package-lock.json first to leverage Docker cache
-COPY package*.json ./
+# Copy workspace configuration and lockfiles
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY server/package.json server/
+COPY client/package.json client/
 
-# Install only production dependencies
-RUN npm ci --omit=dev
+# Install dependencies specifically for the server (and its workspace dependencies if any).
+# Note: --prod is removed to accommodate future TypeScript compilation requirements.
+RUN pnpm install --frozen-lockfile --filter server...
 
-# Copy the rest of the application code
-COPY . .
+# ==========================================
+# 2. PRODUCTION RUNNER STAGE
+# ==========================================
+FROM base AS runner
+WORKDIR /app
 
-# Ensure the temp directory for multer uploads exists
-RUN mkdir -p public/temp
+ENV NODE_ENV=production
 
-# Expose the default port the app runs on
+# Create non-root user for security best practices
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 expressjs
+
+# Copy only the installed node_modules and pnpm store from the deps stage
+COPY --from=deps --chown=expressjs:nodejs /app ./
+
+# Copy ONLY the server source code.
+# This completely ignores the client source code, keeping the server image lightweight.
+COPY --chown=expressjs:nodejs server/ ./server/
+
+# Move into the server directory
+WORKDIR /app/server
+
+# Ensure temp directory exists for Multer uploads and give ownership to expressjs user
+RUN mkdir -p public/temp && chown -R expressjs:nodejs public/temp
+
+USER expressjs
+
 EXPOSE 8000
+ENV PORT=8000
 
-# Define the command to run the application
-CMD ["npm", "start"]
+# Run the server directly using Node (bypassing pnpm overhead)
+CMD ["node", "index.js"]

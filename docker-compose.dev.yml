@@ -1,0 +1,14 @@
+services:
+  mongodb:
+    image: mongo:8.3
+    container_name: mentovara-mongo
+    restart: always
+    ports:
+      - '127.0.0.1:27017:27017'
+    env_file:
+      - server/.env
+    volumes:
+      - mentovara-mongo-data:/data/db
+
+volumes:
+  mentovara-mongo-data:
