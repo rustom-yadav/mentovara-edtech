@@ -1,133 +1,193 @@
-# Mentovara
+# 🎓 Mentovara - EdTech Platform
 
-A modern EdTech platform where instructors create structured video courses and students learn with real-time progress tracking.
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
-**Built by Rustom Yadav** · [MIT License](./LICENSE)
+Welcome to **Mentovara** — A modern EdTech platform where instructors create structured video courses and students learn with real-time progress tracking.
 
-🔗 **Repo:** [GitHub Repository](https://github.com/rustom-yadav/mentovara-edtech)
-🌐 **Frontend:** [mentovara.vercel.app](https://mentovara.vercel.app)  
-🌐 **Backend API:** [mentovara-edtech-api.onrender.com](https://mentovara-edtech-api.onrender.com)
+This is a monorepo containing two services:
 
----
+- **[`client/`](./client/)** (📝 [Read Client Docs](./client/README.md)) — A Next.js 16.1 (App Router) + React 19.2 + Tailwind CSS 4.3 frontend.
+- **[`server/`](./server/)** (📝 [Read Server Docs](./server/README.md)) — A Node.js v24 + Express 5.2 + MongoDB backend API.
 
-## ✨ Key Features
-
-- **🎓 Interactive Learning**: Watch high-quality video courses with real-time progress tracking.
-- **💳 Secure Payments**: Seamless course enrollment powered by **Razorpay** integration.
-- **📧 Email Verification**: Robust authentication with SMTP-based email verification using **Nodemailer**.
-- **👨‍🏫 Instructor Dashboard**: Comprehensive tools for instructors to create, manage, and track their courses.
-- **📁 Media Management**: Optimized image and video handling via **Cloudinary**.
-- **📱 Responsive UI**: A premium, modern interface built with **Next.js**, **Tailwind CSS**, and **Shadcn UI**.
-
----
-
-## 🛠️ Tech Stack
-
-| Layer        | Stack                                                                               |
-| ------------ | ----------------------------------------------------------------------------------- |
-| **Frontend** | Next.js 16 (App Router), React 19, Tailwind CSS v4, Shadcn UI, Redux Toolkit, Axios |
-| **Backend**  | Node.js, Express 5, MongoDB, Mongoose                                               |
-| **Payments** | Razorpay SDK                                                                        |
-| **Email**    | Nodemailer (SMTP)                                                                   |
-| **Auth**     | JWT (HTTP-only cookies)                                                             |
-| **Media**    | Cloudinary (images & video)                                                         |
-| **DevOps**   | Docker & Docker Compose (Containerized Backend)                                     |
+Both are orchestrated together via **Docker Compose** or **pnpm** concurrently for a seamless developer experience.
 
 ---
 
-## Project Structure
+## ✨ Features
 
+- **🎓 Interactive Learning** — Watch high-quality video courses with real-time progress tracking.
+- **💳 Secure Payments** — Seamless course enrollment powered by **Razorpay** integration.
+- **👨‍🏫 Instructor Dashboard** — Comprehensive tools for instructors to create, manage, and track their courses.
+- **📁 Media Management** — Optimized image and video handling via **Cloudinary**.
+- **📧 Email Verification** — Robust authentication with SMTP-based email verification using **Nodemailer**.
+- **🐳 One-Command Setup** — Spin up the entire application with a single `docker compose` or `pnpm` command.
+
+---
+
+## 🏛️ Architecture
+
+```text
+┌─────────────┐        ┌─────────────┐        ┌─────────────┐
+│   client    │──────▶│   server    │──────▶│   MongoDB   │
+│  (Next.js)  │  HTTP  │  (Express)  │  TCP   │ (Database)  │
+│    :3000    │        │    :8000    │        │   :27017    │
+└─────────────┘        └──────┬──────┘        └─────────────┘
+                              │
+                    ┌─────────┴─────────┐
+                    │    Cloudinary     │
+                    │     Razorpay      │
+                    └───────────────────┘
 ```
-Mentovara/
-├── client/          # Next.js frontend
-├── server/           # Express API + MongoDB
-├── LICENSE
-└── README.md         # You are here
-```
 
-- **[client/](./client/)** —
-  Frontend app (see [client/README.md](./client/README.md))
-- **[server/](./server/)** —
-  Backend API (see [server/README.md](./server/README.md))
+The `client` talks only to the `server` via HTTP (direct or Next.js proxy). The `server` handles all business logic, media uploads to Cloudinary, payment verification with Razorpay, and data persistence in MongoDB.
 
-## Quick Start
+---
 
-### Prerequisites
+## 🚀 Getting Started
 
-- **Node.js**: version 20+ required
-- **MongoDB**: Local instance or Atlas URI
-- **Cloudinary**: Account for image/video hosting
-- **Razorpay**: Account and API keys (Key ID & Secret)
-- **SMTP**: Gmail App Password or other SMTP service for emails
+Follow these step-by-step instructions to get Mentovara running on your machine (Local or VPS).
 
-### 1. Backend
+### 📥 1. Clone the Repository
+
+First, clone the code to your machine and open the folder. This step is required for all methods:
 
 ```bash
-cd server
-cp .env.example .env   # edit with your MongoDB, JWT, Cloudinary keys
-npm install
-npm run dev
+git clone https://github.com/rustom-yadav/mentovara-edtech.git
+cd mentovara-edtech
 ```
 
-**Alternative: Run Backend with Docker (Recommended for Dev/Test)**
+---
+
+### 🐳 Option A: Running with Docker (Production/Testing)
+
+**Prerequisites:**
+- **Docker** ([install guide](https://docs.docker.com/get-docker/))
+
+#### Step 1: Environment Setup
+Create the required environment files for the Root, Server, and Client:
 
 ```bash
-cd server
-docker-compose up -d --build
+cp .env.example .env
+cp server/.env.example server/.env
+cp client/.env.example client/.env.local
 ```
 
-API runs at `http://localhost:8000` (or the port in `.env`).
+Now configure all three files:
 
-### 2. Frontend
+| File | What to set |
+| :--- | :---------- |
+| `server/.env` | **Cloud MongoDB URI** (Atlas) — mandatory, as this Docker setup does not run a local DB container. Also set Cloudinary, Razorpay, SMTP, and JWT secrets. |
+| `.env` (Root) | Set `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_RAZORPAY_KEY_ID`. These are injected into the client container at build time. |
+| `client/.env.local` | Set `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_RAZORPAY_KEY_ID` (same values as Root `.env`). |
+
+#### Step 2: Start the App
+To run the fully containerized stack:
 
 ```bash
-cd client
-cp .env.local.example .env.local   # set NEXT_PUBLIC_API_URL to backend URL
-npm install
-npm run dev
+docker compose up -d --build
 ```
 
-App runs at `http://localhost:3000`.
+This single command will start the API (port 8000) and Client (port 3000). Once it's up, open **http://localhost:3000** in your browser!
 
-### 3. Use the app
+To stop everything:
 
-- Open `http://localhost:3000`
-- Register as **Student** or **Instructor**
-- Browse courses, enroll, watch videos, or create your own course
-
----
-
-## Environment
-
-- **server**: See `server/README.md` and `server/.env.example` for `MONGO_URI`, `ACCESS_TOKEN_SECRET`, `CLOUDINARY_*`, `CORS_ORIGIN`, etc.
-- **client**: See `client/README.md` for `NEXT_PUBLIC_API_URL`.
+```bash
+docker compose down
+```
 
 ---
 
-## 🚀 Production Checklist
+### 🛠️ Option B: Running with pnpm (Manual Dev Mode)
 
-Before deploying to platforms like Vercel (Frontend) and Render/Railway (Backend):
+**Prerequisites:**
+- **Node.js** (v24 LTS)
+- **pnpm** (v12.x)
+- **Docker** (For local MongoDB, optional)
 
-| Check                     | Requirement                                  |
-| ------------------------- | -------------------------------------------- |
-| `NEXT_PUBLIC_BACKEND_URL` | Set to your live API URL (Client Env)        |
-| `CORS_ORIGIN`             | Set to your frontend URL (Server Env)        |
-| `NODE_ENV`                | Must be set to `production`                  |
-| `RAZORPAY_WEBHOOK_SECRET` | For secure payment verification              |
-| `SMTP_*` Keys             | Verify email sender configuration            |
-| JWT Secrets               | Use strong, random strings for production    |
-| Database                  | Ensure MongoDB Atlas IP whitelist is updated |
+#### Step 1: Environment Setup
+Create the environment files for the Server and Client (Root `.env` is not needed for local development — it is only used by Docker Compose):
+
+```bash
+cp server/.env.example server/.env
+cp client/.env.example client/.env.local
+```
+
+Edit `server/.env` with your actual keys (Cloudinary, Razorpay, SMTP, JWT secrets). For the database, choose one of the two modes described in Step 3 below.
+
+#### Step 2: Install Dependencies
+We have a single setup command that installs all dependencies for the entire project (Root, Client, and Server) at once. Run this from the root directory:
+
+```bash
+pnpm install
+```
+
+#### Step 3: Start the App
+You can run the app in two modes from the project root:
+
+**Mode 1: With Local Docker MongoDB** (Uses `docker-compose.dev.yml`)
+Ensure `MONGO_URI` in `server/.env` is set to `mongodb://root:secret@127.0.0.1:27017/?authSource=admin`.
+```bash
+pnpm dev:mongoDB
+```
+
+**Mode 2: With Cloud MongoDB Atlas**
+Ensure `MONGO_URI` in `server/.env` points to your live Atlas cluster.
+```bash
+pnpm dev
+```
+_These commands use `concurrently` to start both the Next.js frontend and Express backend side-by-side._
+
+#### Step 4: Access the App
+Open **http://localhost:3000** in your browser!
 
 ---
 
-## 📖 API Documentation
+## 🏗️ Tech Stack
 
-The project includes a comprehensive API collection.
-
-🔗 **Postman Collection:** [View API Documentation](https://vijayyadav-official-4892899.postman.co/workspace/Vijay-Yadav's-Workspace~b311eace-bf23-4c27-863a-47b64a5efa0e/collection/52621760-64117d9f-fdf1-4258-909e-a14d4b2458d0?action=share&source=copy-link&creator=52621760)
+| Layer        | Technology                                  | Purpose                                     |
+| ------------ | ------------------------------------------- | ------------------------------------------- |
+| **Frontend** | Next.js 16.1 + React 19.2                     | Core framework built on the App Router      |
+| **Frontend** | Tailwind CSS 4.3 + Shadcn UI                  | Utility-first, premium styling & components |
+| **Frontend** | Redux Toolkit                                 | Global state management                     |
+| **Backend**  | Node.js v24 + Express 5.2                     | REST API and HTTP server                    |
+| **Backend**  | MongoDB + Mongoose 9.10                       | NoSQL database and ODM                      |
+| **Security** | JWT (JSON Web Tokens)                         | Authentication and session management       |
+| **Services** | Cloudinary                                    | Image and video media management            |
+| **Services** | Razorpay                                      | Secure payment gateway integration          |
+| **Infra**    | Docker Compose                                | One-command orchestration of all services   |
+| **Tooling**  | pnpm 12.6                                     | Fast, efficient package manager             |
 
 ---
 
-## License
+## 📁 Project Structure
 
-MIT © 2026 Rustom Yadav
+```text
+.
+├── client/                   # Next.js frontend
+│   ├── src/
+│   ├── Dockerfile
+│   └── .env.example
+├── server/                   # Express backend API
+│   ├── src/
+│   ├── Dockerfile
+│   └── .env.example
+├── docker-compose.yml        # Orchestrates client & server for production
+├── docker-compose.dev.yml    # Orchestrates local MongoDB for development
+├── .env.example              # Root environment variable reference
+└── README.md                 # You are here
+```
+
+---
+
+## Author
+
+**Rustom Yadav**
+
+[rustomyadav@outlook.com](mailto:rustomyadav@outlook.com)

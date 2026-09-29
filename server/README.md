@@ -1,13 +1,13 @@
 # 🛡️ Mentovara — Scalable Express.js API
 
-The Mentovara Backend is a robust, production-ready REST API built with **Express 5** and **MongoDB**. It serves as the primary engine for authentication, course orchestration, payment processing, and real-time progress tracking.
+The Mentovara Backend is a robust, production-ready REST API built with **Express 5.2** and **MongoDB**. It serves as the primary engine for authentication, course orchestration, payment processing, and real-time progress tracking.
 
 ---
 
 ## 🛠️ Performance Tech Stack
 
-- **Runtime:** Node.js v20+
-- **Framework:** Express 5 (Next-Gen)
+- **Runtime:** Node.js v24+
+- **Framework:** Express 5.2 (Next-Gen)
 - **Database:** MongoDB (via Mongoose ODM)
 - **Security:** JWT (Access & Refresh tokens via HTTP-only Cookies)
 - **Payments:** Razorpay Node.js SDK (Signature Verification enabled)
@@ -40,7 +40,7 @@ server/
 
 ## 🔐 Environment Configuration (.env)
 
-Server properly function karne ke liye niche diye gaye environment variables mandatory hain. Inhe grouped kar diya gaya hai for better clarity:
+The following environment variables are mandatory for the server to function properly. They have been grouped below for better clarity:
 
 ### 1. 🌐 Core Server & Database
 
@@ -87,7 +87,7 @@ Server properly function karne ke liye niche diye gaye environment variables man
 | `RAZORPAY_WEBHOOK_SECRET` | Secret for verifying hooks | Razorpay Webhook Settings     |
 
 > [!CAUTION]
-> **Security Warning**: Kabhi bhi `.env` file ko GitHub par push na karein. Ise humesha `.gitignore` mein rakhein.
+> **Security Warning**: Never push the `.env` file to GitHub. Always keep it in your `.gitignore`.
 
 ---
 
@@ -118,30 +118,25 @@ Centralized `ApiError` class and `errorHandler` middleware ensure that the clien
 
 ## 🚦 Getting Started
 
-1. **Install Sub-module Dependencies**:
+> **Note:** We recommend running all commands from the **root directory** of the monorepo, as this project uses `pnpm` workspaces.
 
+1. **Install Dependencies**:
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. **Database Initialization**:
-   Ensure your MongoDB instance is running (Local or Atlas).
+   Ensure your MongoDB instance is running (Local or Atlas) and configured in `.env`.
 
-3. **Development Mode (Manual)**:
+3. **Development Mode**:
+   From the root directory, run the backend server:
    ```bash
-   npm run dev
+   pnpm dev:server
    ```
 
-### 🐳 Run with Docker (Recommended)
+### 🐳 Run Full Stack with Docker
 
-You can run the entire backend + a local isolated MongoDB instantly:
-
-```bash
-docker-compose up -d --build
-```
-
-- The API will be available at `http://localhost:8000`
-- MongoDB will be secured with authentication and mapped to port `27017` internally.
+If you want to run the entire application (Frontend + Backend) using Docker Compose, please refer to the [Root README](../README.md).
 
 ---
 
