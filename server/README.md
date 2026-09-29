@@ -121,6 +121,7 @@ Centralized `ApiError` class and `errorHandler` middleware ensure that the clien
 > **Note:** We recommend running all commands from the **root directory** of the monorepo, as this project uses `pnpm` workspaces.
 
 1. **Install Dependencies**:
+
    ```bash
    pnpm install
    ```

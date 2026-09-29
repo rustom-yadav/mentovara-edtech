@@ -68,9 +68,11 @@ cd mentovara-edtech
 ### 🐳 Option A: Running with Docker (Production/Testing)
 
 **Prerequisites:**
+
 - **Docker** ([install guide](https://docs.docker.com/get-docker/))
 
 #### Step 1: Environment Setup
+
 Create the required environment files for the Root, Server, and Client:
 
 ```bash
@@ -81,13 +83,14 @@ cp client/.env.example client/.env.local
 
 Now configure all three files:
 
-| File | What to set |
-| :--- | :---------- |
-| `server/.env` | **Cloud MongoDB URI** (Atlas) — mandatory, as this Docker setup does not run a local DB container. Also set Cloudinary, Razorpay, SMTP, and JWT secrets. |
-| `.env` (Root) | Set `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_RAZORPAY_KEY_ID`. These are injected into the client container at build time. |
-| `client/.env.local` | Set `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_RAZORPAY_KEY_ID` (same values as Root `.env`). |
+| File                | What to set                                                                                                                                              |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `server/.env`       | **Cloud MongoDB URI** (Atlas) — mandatory, as this Docker setup does not run a local DB container. Also set Cloudinary, Razorpay, SMTP, and JWT secrets. |
+| `.env` (Root)       | Set `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_RAZORPAY_KEY_ID`. These are injected into the client container at build time.                             |
+| `client/.env.local` | Set `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_RAZORPAY_KEY_ID` (same values as Root `.env`).                                                            |
 
 #### Step 2: Start the App
+
 To run the fully containerized stack:
 
 ```bash
@@ -107,11 +110,13 @@ docker compose down
 ### 🛠️ Option B: Running with pnpm (Manual Dev Mode)
 
 **Prerequisites:**
+
 - **Node.js** (v24 LTS)
 - **pnpm** (v12.x)
 - **Docker** (For local MongoDB, optional)
 
 #### Step 1: Environment Setup
+
 Create the environment files for the Server and Client (Root `.env` is not needed for local development — it is only used by Docker Compose):
 
 ```bash
@@ -122,6 +127,7 @@ cp client/.env.example client/.env.local
 Edit `server/.env` with your actual keys (Cloudinary, Razorpay, SMTP, JWT secrets). For the database, choose one of the two modes described in Step 3 below.
 
 #### Step 2: Install Dependencies
+
 We have a single setup command that installs all dependencies for the entire project (Root, Client, and Server) at once. Run this from the root directory:
 
 ```bash
@@ -129,40 +135,45 @@ pnpm install
 ```
 
 #### Step 3: Start the App
+
 You can run the app in two modes from the project root:
 
 **Mode 1: With Local Docker MongoDB** (Uses `docker-compose.dev.yml`)
 Ensure `MONGO_URI` in `server/.env` is set to `mongodb://root:secret@127.0.0.1:27017/?authSource=admin`.
+
 ```bash
 pnpm dev:mongoDB
 ```
 
 **Mode 2: With Cloud MongoDB Atlas**
 Ensure `MONGO_URI` in `server/.env` points to your live Atlas cluster.
+
 ```bash
 pnpm dev
 ```
+
 _These commands use `concurrently` to start both the Next.js frontend and Express backend side-by-side._
 
 #### Step 4: Access the App
+
 Open **http://localhost:3000** in your browser!
 
 ---
 
 ## 🏗️ Tech Stack
 
-| Layer        | Technology                                  | Purpose                                     |
-| ------------ | ------------------------------------------- | ------------------------------------------- |
-| **Frontend** | Next.js 16.1 + React 19.2                     | Core framework built on the App Router      |
-| **Frontend** | Tailwind CSS 4.3 + Shadcn UI                  | Utility-first, premium styling & components |
-| **Frontend** | Redux Toolkit                                 | Global state management                     |
-| **Backend**  | Node.js v24 + Express 5.2                     | REST API and HTTP server                    |
-| **Backend**  | MongoDB + Mongoose 9.10                       | NoSQL database and ODM                      |
-| **Security** | JWT (JSON Web Tokens)                         | Authentication and session management       |
-| **Services** | Cloudinary                                    | Image and video media management            |
-| **Services** | Razorpay                                      | Secure payment gateway integration          |
-| **Infra**    | Docker Compose                                | One-command orchestration of all services   |
-| **Tooling**  | pnpm 12.6                                     | Fast, efficient package manager             |
+| Layer        | Technology                   | Purpose                                     |
+| ------------ | ---------------------------- | ------------------------------------------- |
+| **Frontend** | Next.js 16.1 + React 19.2    | Core framework built on the App Router      |
+| **Frontend** | Tailwind CSS 4.3 + Shadcn UI | Utility-first, premium styling & components |
+| **Frontend** | Redux Toolkit                | Global state management                     |
+| **Backend**  | Node.js v24 + Express 5.2    | REST API and HTTP server                    |
+| **Backend**  | MongoDB + Mongoose 9.10      | NoSQL database and ODM                      |
+| **Security** | JWT (JSON Web Tokens)        | Authentication and session management       |
+| **Services** | Cloudinary                   | Image and video media management            |
+| **Services** | Razorpay                     | Secure payment gateway integration          |
+| **Infra**    | Docker Compose               | One-command orchestration of all services   |
+| **Tooling**  | pnpm 12.6                    | Fast, efficient package manager             |
 
 ---
 
