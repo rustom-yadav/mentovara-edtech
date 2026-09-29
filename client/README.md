@@ -1,37 +1,25 @@
 # 🎓 Mentovara — High-Performance EdTech Frontend
 
-Mentovara is a premium, enterprise-grade learning management system frontend built with a **Zero-Logic Architecture**. It leverages **Next.js 16 (App Router)** and **React 19** to deliver a seamless, state-of-the-art educational experience.
+Mentovara is a premium, enterprise-grade learning management system frontend built with a **Zero-Logic Architecture**. It leverages **Next.js 16.1 (App Router)** and **React 19.2** to deliver a seamless, state-of-the-art educational experience.
 
 ---
 
-## 🏗️ Architectural Excellence: Zero-Logic Pattern
+## 🏗️ How the Code is Organized
 
-The project is engineered for long-term maintainability by separating concerns into three strictly decoupled layers. This ensures that UI components remain "dumb" (rendering only), while business logic remains "pure" (testable JS).
+We keep our code clean and easy to read by separating the UI from the business logic.
 
-```mermaid
-graph TD
-    A[UI Layer: src/app & src/components] -->|Invokes| B[Orchestration Layer: src/hooks]
-    B -->|Uses| C[Logic Layer: src/utilities]
-    B -->|Calls| D[Data Layer: src/services]
-    B -->|Dispatches| E[State Layer: src/store]
-```
-
-### 🧱 Layer Breakdown
-
-| Layer             | Description                  | Rules                                                    |
-| :---------------- | :--------------------------- | :------------------------------------------------------- |
-| **Presentation**  | `src/app` & `src/components` | No calculations. Use props and hooks only.               |
-| **Orchestration** | `src/hooks`                  | Manage React state, effects, and API orchestration.      |
-| **Pure Logic**    | `src/utilities`              | Pure JS functions for math, validation, and parsing.     |
-| **Data Access**   | `src/services`               | Axios configuration, interceptors, and endpoint mapping. |
-| **Global State**  | `src/store`                  | Redux Toolkit slices for cross-component data.           |
+- **UI Components (`src/app` & `src/components`)**: These files only handle how things look. They don't do complex calculations.
+- **Custom Hooks (`src/hooks`)**: These act as the "managers". They fetch data from the API and pass it to the UI components.
+- **Logic Functions (`src/utilities`)**: All complex formatting and validations go here as simple JavaScript functions.
+- **API Services (`src/services`)**: This folder handles all Axios setups and backend connections.
+- **Global State (`src/store`)**: We use Redux Toolkit here to share data (like user login info) across the whole app.
 
 ---
 
 ## 🛡️ Key Features & Engineering Highlights
 
-- **⚡ Next.js 16 & Turbo**: Utilizing the latest App Router patterns for optimized routing and layout persistence.
-- **🎨 Tailwind CSS v4**: Ultra-modern, high-performance styling with zero-runtime overhead.
+- **⚡ Next.js 16.1 & Turbo**: Utilizing the latest App Router patterns for optimized routing and layout persistence.
+- **🎨 Tailwind CSS 4.3**: Ultra-modern, high-performance styling with zero-runtime overhead.
 - **🔐 Advanced Auth**: Multi-role (Student/Instructor) flow with SMTP-based email verification and failed-request-queueing in Axios interceptors.
 - **💸 Razorpay SDK**: Secure client-side payment orchestration with server-side signature verification.
 - **📽️ Video Lifecycle**: Custom player with auto-save progress tracking and direct-to-backend video streaming to bypass serverless limits.
@@ -59,7 +47,7 @@ client/
 │   ├── services/           # 🔌 SERVICES: API instance & Interceptors
 │   ├── store/              # 📦 STATE: Redux Toolkit (Auth/Course domains)
 │   └── lib/                # 🛠️ LOW-LEVEL: Design system primitives (CN)
-└── proxy.js                # 🔄 PROXY: Integrated development API bridge
+└── next.config.mjs         # 🔄 PROXY: Integrated API rewrite bridge
 ```
 
 ---
@@ -89,10 +77,12 @@ client/
 
 ## 🚀 Getting Started
 
-1. **Install Dependencies**: `npm install`
-2. **Setup Env**: Create `.env.local` using `NEXT_PUBLIC_BACKEND_URL`.
-3. **Run Dev**: `npm run dev`
-4. **Audit**: `npm run lint`
+1. **Install Dependencies**: `pnpm install`
+2. **Setup Env**: Copy `.env.example` to `.env.local`. Set `NEXT_PUBLIC_BACKEND_URL` to `http://localhost:8000` (Local) or your live backend URL (Production).
+3. **Run Dev**: `pnpm dev`
+4. **Audit**: `pnpm lint`
+
+> **Note on Docker Networking:** This Next.js app is configured to use a smart proxy in `next.config.mjs`. When running inside Docker Compose, it will automatically proxy `/api` requests to the internal Docker container using the `INTERNAL_BACKEND_URL` injected by the root orchestrator. When running locally via `pnpm dev`, it gracefully falls back to `NEXT_PUBLIC_BACKEND_URL`. No manual `.env` switching is required!
 
 ---
 
